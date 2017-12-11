@@ -8,4 +8,8 @@
         android:id="@+id/menu_nav_dagger2"
         android:title="Dagger2"/>
 
+    <item
+        android:id="@+id/menu_nav_kill"
+        android:title="进程保活"/>
+
 </menu>

@@ -3,6 +3,7 @@ package com.qyh.coderepository;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,8 +13,10 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.qyh.coderepository.dagger.DaggerFragment;
 import com.qyh.coderepository.database.DBFragment;
-import com.qyh.coderepository.util.FragmentStack;
+import com.qyh.coderepository.killer.KillerFragment;
+import com.qyh.coderepository.util.fragment.FragmentStack;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -71,7 +74,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.menu_nav_dagger2:
                 /** 依赖注入 */
-
+                fragmentStack.replace(new DaggerFragment());
+                break;
+            case R.id.menu_nav_kill:
+                /** 进程保活 */
+                fragmentStack.replace(new KillerFragment(""));
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -84,5 +91,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (!fragmentStack.pop()) {
             super.onBackPressed();
         }
+    }
+
+    public void push(Fragment fragment) {
+        fragmentStack.push(fragment);
     }
 }

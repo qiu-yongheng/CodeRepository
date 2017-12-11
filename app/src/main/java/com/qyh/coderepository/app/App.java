@@ -7,6 +7,9 @@ import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.LogcatLogStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
+import com.qyh.coderepository.dagger.component.BaseComponent;
+import com.qyh.coderepository.dagger.component.DaggerBaseComponent;
+import com.qyh.coderepository.dagger.module.BaseModule;
 import com.qyh.coderepository.database.manager.DbHelper;
 
 
@@ -17,9 +20,14 @@ import com.qyh.coderepository.database.manager.DbHelper;
  */
 
 public class App extends Application{
+
+    private BaseComponent baseComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+        baseComponent = DaggerBaseComponent.builder().baseModule(new BaseModule()).build();
 
         initLogger();
         DbHelper.getInstance().init(this);
@@ -35,5 +43,9 @@ public class App extends Application{
                 .build();
 
         Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
+    }
+
+    public BaseComponent getBaseComponent() {
+        return baseComponent;
     }
 }

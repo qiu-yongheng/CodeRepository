@@ -1,4 +1,4 @@
-package com.qyh.coderepository.util;
+package com.qyh.coderepository.util.fragment;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
