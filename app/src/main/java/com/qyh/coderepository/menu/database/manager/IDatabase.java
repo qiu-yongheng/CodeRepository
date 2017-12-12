@@ -1,4 +1,4 @@
-package com.qyh.coderepository.database.manager;
+package com.qyh.coderepository.menu.database.manager;
 
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.annotation.NotNull;

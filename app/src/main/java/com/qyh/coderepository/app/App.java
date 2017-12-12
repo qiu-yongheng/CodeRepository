@@ -7,10 +7,10 @@ import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.LogcatLogStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
-import com.qyh.coderepository.dagger.component.BaseComponent;
-import com.qyh.coderepository.dagger.component.DaggerBaseComponent;
-import com.qyh.coderepository.dagger.module.BaseModule;
-import com.qyh.coderepository.database.manager.DbHelper;
+import com.qyh.coderepository.menu.dagger.component.BaseComponent;
+import com.qyh.coderepository.menu.dagger.component.DaggerBaseComponent;
+import com.qyh.coderepository.menu.dagger.module.BaseModule;
+import com.qyh.coderepository.menu.database.manager.DbHelper;
 
 
 /**

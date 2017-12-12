@@ -1,7 +1,7 @@
-package com.qyh.coderepository.dagger.component;
+package com.qyh.coderepository.menu.dagger.component;
 
-import com.qyh.coderepository.dagger.SubSecondFragment;
-import com.qyh.coderepository.dagger.module.SecondModule;
+import com.qyh.coderepository.menu.dagger.SubSecondFragment;
+import com.qyh.coderepository.menu.dagger.module.SecondModule;
 
 import dagger.Subcomponent;
 

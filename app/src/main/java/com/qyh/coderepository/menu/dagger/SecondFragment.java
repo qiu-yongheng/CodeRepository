@@ -1,4 +1,4 @@
-package com.qyh.coderepository.dagger;
+package com.qyh.coderepository.menu.dagger;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,10 +10,10 @@ import android.widget.TextView;
 
 import com.qyh.coderepository.R;
 import com.qyh.coderepository.app.App;
-import com.qyh.coderepository.dagger.component.DaggerSecondComponent;
-import com.qyh.coderepository.dagger.data.Cloth;
-import com.qyh.coderepository.dagger.data.ClothHandler;
-import com.qyh.coderepository.dagger.module.SecondModule;
+import com.qyh.coderepository.menu.dagger.component.DaggerSecondComponent;
+import com.qyh.coderepository.menu.dagger.data.Cloth;
+import com.qyh.coderepository.menu.dagger.data.ClothHandler;
+import com.qyh.coderepository.menu.dagger.module.SecondModule;
 
 import javax.inject.Inject;
 import javax.inject.Named;

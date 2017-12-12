@@ -1,8 +1,8 @@
-package com.qyh.coderepository.dagger.component;
+package com.qyh.coderepository.menu.dagger.component;
 
-import com.qyh.coderepository.dagger.DaggerFragment;
-import com.qyh.coderepository.dagger.annotation.PreFragment;
-import com.qyh.coderepository.dagger.module.DaggerModule;
+import com.qyh.coderepository.menu.dagger.DaggerFragment;
+import com.qyh.coderepository.menu.dagger.annotation.PreFragment;
+import com.qyh.coderepository.menu.dagger.module.DaggerModule;
 
 import dagger.Component;
 

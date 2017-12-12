@@ -1,4 +1,4 @@
-package com.qyh.coderepository.dagger.annotation;
+package com.qyh.coderepository.menu.dagger.annotation;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

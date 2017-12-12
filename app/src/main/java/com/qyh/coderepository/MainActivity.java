@@ -13,10 +13,11 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-import com.qyh.coderepository.dagger.DaggerFragment;
-import com.qyh.coderepository.database.DBFragment;
-import com.qyh.coderepository.killer.KillerFragment;
+import com.qyh.coderepository.menu.dagger.DaggerFragment;
+import com.qyh.coderepository.menu.database.DBFragment;
+import com.qyh.coderepository.menu.killer.KillerFragment;
 import com.qyh.coderepository.util.fragment.FragmentStack;
+import com.qyh.coderepository.util.log.LoggerUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,7 +79,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.menu_nav_kill:
                 /** 进程保活 */
-                fragmentStack.replace(new KillerFragment(""));
+                fragmentStack.replace(new KillerFragment());
+                break;
+            case R.id.menu_nav_runnable:
+                /** 任务队列 */
+                fragmentStack.replace(new KillerFragment());
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -95,5 +100,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void push(Fragment fragment) {
         fragmentStack.push(fragment);
+    }
+
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        LoggerUtil.d("内存等级: " + level);
     }
 }

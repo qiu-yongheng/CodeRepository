@@ -1,8 +1,8 @@
-package com.qyh.coderepository.dagger.module;
+package com.qyh.coderepository.menu.dagger.module;
 
-import com.qyh.coderepository.dagger.annotation.PreFragment;
-import com.qyh.coderepository.dagger.data.Cloth;
-import com.qyh.coderepository.dagger.data.Clothes;
+import com.qyh.coderepository.menu.dagger.annotation.PreFragment;
+import com.qyh.coderepository.menu.dagger.data.Cloth;
+import com.qyh.coderepository.menu.dagger.data.Clothes;
 
 import javax.inject.Named;
 
@@ -15,10 +15,10 @@ import dagger.Provides;
  * @desc 类似工厂类, 提供需要注入的对象
  */
 @Module
-public class DaggerModule {
+public class SecondModule {
 
     // 声明Module类中哪些方法是用来提供依赖对象的
-//    @Singleton
+    //@Singleton
     @PreFragment
     @Provides
     public Cloth getCloth() {

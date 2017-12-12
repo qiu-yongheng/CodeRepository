@@ -1,8 +1,8 @@
-package com.qyh.coderepository.dagger.component;
+package com.qyh.coderepository.menu.dagger.component;
 
-import com.qyh.coderepository.dagger.data.ClothHandler;
-import com.qyh.coderepository.dagger.module.BaseModule;
-import com.qyh.coderepository.dagger.module.SecondModule;
+import com.qyh.coderepository.menu.dagger.data.ClothHandler;
+import com.qyh.coderepository.menu.dagger.module.BaseModule;
+import com.qyh.coderepository.menu.dagger.module.SecondModule;
 
 import javax.inject.Singleton;
 

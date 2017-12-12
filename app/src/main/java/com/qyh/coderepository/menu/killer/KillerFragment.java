@@ -1,4 +1,4 @@
-package com.qyh.coderepository.killer;
+package com.qyh.coderepository.menu.killer;
 
 import android.support.v4.app.Fragment;
 

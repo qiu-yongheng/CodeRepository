@@ -11,5 +11,8 @@
     <item
         android:id="@+id/menu_nav_kill"
         android:title="进程保活"/>
+    <item
+        android:id="@+id/menu_nav_runnable"
+        android:title="任务队列"/>
 
 </menu>

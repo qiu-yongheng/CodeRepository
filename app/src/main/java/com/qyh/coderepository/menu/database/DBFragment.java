@@ -1,4 +1,4 @@
-package com.qyh.coderepository.database;
+package com.qyh.coderepository.menu.database;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.qyh.coderepository.R;
-import com.qyh.coderepository.database.manager.DbHelper;
+import com.qyh.coderepository.menu.database.manager.DbHelper;
 import com.qyh.coderepository.entity.Student;
 import com.qyh.coderepository.entity.StudentDao;
 import com.qyh.coderepository.util.log.LoggerUtil;

@@ -1,4 +1,4 @@
-package com.qyh.coderepository.dagger.data;
+package com.qyh.coderepository.menu.dagger.data;
 
 /**
  * @author 邱永恒
