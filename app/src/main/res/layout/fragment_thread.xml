@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="添加"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="开始"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="取消"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btn_reload"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="重载"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btn_clear"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="销毁"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 
 import com.qyh.coderepository.menu.dagger.DaggerFragment;
 import com.qyh.coderepository.menu.database.DBFragment;
+import com.qyh.coderepository.menu.executor.ThreadExecutorFragment;
 import com.qyh.coderepository.menu.killer.KillerFragment;
 import com.qyh.coderepository.util.fragment.FragmentStack;
 import com.qyh.coderepository.util.log.LoggerUtil;
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.menu_nav_runnable:
                 /** 任务队列 */
-                fragmentStack.replace(new KillerFragment());
+                fragmentStack.replace(new ThreadExecutorFragment());
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
