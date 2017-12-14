@@ -1,10 +1,10 @@
-package com.qyh.coderepository.util.fragment;
+package com.kc.common.util.fragment;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
-import com.qyh.coderepository.R;
+import com.kc.common.R;
 
 import java.util.ArrayList;
 import java.util.List;

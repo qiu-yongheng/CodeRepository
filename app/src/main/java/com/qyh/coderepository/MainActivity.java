@@ -17,7 +17,7 @@ import com.qyh.coderepository.menu.dagger.DaggerFragment;
 import com.qyh.coderepository.menu.database.DBFragment;
 import com.qyh.coderepository.menu.executor.ThreadExecutorFragment;
 import com.qyh.coderepository.menu.killer.KillerFragment;
-import com.qyh.coderepository.util.fragment.FragmentStack;
+import com.kc.common.util.fragment.FragmentStack;
 import com.qyh.coderepository.util.log.LoggerUtil;
 
 import butterknife.BindView;

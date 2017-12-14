@@ -1,6 +1,11 @@
 package com.qyh.coderepository.menu.executor;
 
+import android.app.Service;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,12 +17,10 @@ import com.qyh.coderepository.R;
 import com.qyh.coderepository.util.log.LoggerUtil;
 
 import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -39,7 +42,23 @@ public class ThreadExecutorFragment extends Fragment implements View.OnClickList
     @BindView(R.id.btn_clear)
     Button btnClear;
     Unbinder unbinder;
-    private ExecutorService executor;
+    private Executor executor;
+    private int index = 0;
+
+    ServiceConnection connection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            LoggerUtil.d("绑定service");
+            s = ((SerialService.SerialBinder) service).getService();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            LoggerUtil.d("断开service");
+        }
+    };
+    private SerialService s;
+    private Intent intent;
 
     @Nullable
     @Override
@@ -54,6 +73,9 @@ public class ThreadExecutorFragment extends Fragment implements View.OnClickList
         super.onViewCreated(view, savedInstanceState);
         initView();
         initListener();
+        intent = new Intent(getContext(), SerialService.class);
+        getActivity().startService(intent);
+        getActivity().bindService(intent, connection, Service.BIND_AUTO_CREATE);
     }
 
     private void initView() {
@@ -72,25 +94,18 @@ public class ThreadExecutorFragment extends Fragment implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_add:
-                executor = Executors.newSingleThreadExecutor();
-                for (int i = 1; i <= 10; i++) {
-                    final int index = i;
-                    executor.submit(new Runnable() {
-                        @Override
-                        public void run() {
-                            String threadName = Thread.currentThread().getName();
-                            LoggerUtil.d("线程：" + threadName + ",正在执行第" + index + "个任务");
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-//                            if (index == 1) {
-//                                throw new RuntimeException("模拟报错");
-//                            }
-                        }
-                    });
+                if (executor == null) {
+//                    executor = Executors.newSingleThreadExecutor();
+                                        executor = new SerialExecutor(Executors.newSingleThreadExecutor());
                 }
+
+                if (s != null) {
+                    s.addQueue("net");
+                }
+
+                break;
+            case R.id.btn_start:
+                s.addList("6");
                 break;
         }
     }
@@ -99,6 +114,10 @@ public class ThreadExecutorFragment extends Fragment implements View.OnClickList
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        getActivity().unbindService(connection);
+        if (intent != null) {
+            getActivity().stopService(intent);
+        }
     }
 
 }

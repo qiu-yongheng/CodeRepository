@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
  * @desc ${TODD}
  */
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity{
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.layout_container)

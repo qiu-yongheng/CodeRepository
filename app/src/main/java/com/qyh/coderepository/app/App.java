@@ -20,7 +20,6 @@ import com.qyh.coderepository.menu.database.manager.DbHelper;
  */
 
 public class App extends Application{
-
     private BaseComponent baseComponent;
 
     @Override

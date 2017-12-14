@@ -1,4 +1,4 @@
-package com.qyh.coderepository.util.dialog;
+package com.kc.common.util.dialog;
 
 /**
  * @author 邱永恒

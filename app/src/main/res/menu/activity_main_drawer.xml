@@ -14,5 +14,7 @@
     <item
         android:id="@+id/menu_nav_runnable"
         android:title="任务队列"/>
-
+    <item
+        android:id="@+id/menu_nav_mvp"
+        android:title="封装MVP"/>
 </menu>

@@ -1,4 +1,4 @@
-package com.qyh.coderepository.util.activity;
+package com.kc.common.util.activity;
 
 import android.app.Activity;
 import android.content.Context;
