@@ -14,7 +14,7 @@ import com.kc.common.util.activity.ActivityManager;
  * @desc ${TODD}
  */
 
-public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements BaseView {
+public abstract class BaseActivity<T extends MyPresenter> extends AppCompatActivity implements BaseView {
     protected T mPresenter;
     protected Activity mContext;
 
@@ -25,9 +25,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
         createPresenter();
 
-        if (mPresenter != null) {
-            mPresenter.attachView(this);
-        }
         ActivityManager.getInstance().addActivity(this);
         init();
     }
@@ -35,9 +32,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mPresenter != null) {
-            mPresenter.detachView();
-        }
         ActivityManager.getInstance().removeActivity(this);
     }
 

@@ -6,8 +6,6 @@ package com.kc.common.base;
  * @desc ${TODD}
  */
 
-public interface BasePresenter<V extends BaseView> {
-    void attachView(V view);
-
-    void detachView();
+public interface BasePresenter {
+    void unSubscribe();
 }

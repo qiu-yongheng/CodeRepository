@@ -16,9 +16,9 @@ import android.view.ViewGroup;
  * @desc ${TODD}
  */
 
-public abstract class BaseFragment<T extends BasePresenter<BaseFragment>> extends Fragment implements BaseView {
-    protected T mPresenter;
-    protected Context mContext;
+public abstract class BaseFragment<T extends BasePresenter> extends Fragment implements BaseView {
+    protected T presenter;
+    protected Context context;
 
     @Nullable
     @Override
@@ -29,19 +29,16 @@ public abstract class BaseFragment<T extends BasePresenter<BaseFragment>> extend
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mContext = getContext();
+        context = getContext();
         createPresenter();
-        if (mPresenter != null) {
-            mPresenter.attachView(this);
-        }
-        init();
+        init(view);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (mPresenter != null) {
-            mPresenter.detachView();
+        if (presenter != null) {
+            presenter.detachView();
         }
     }
 
@@ -54,7 +51,7 @@ public abstract class BaseFragment<T extends BasePresenter<BaseFragment>> extend
 
     protected abstract int getLayout();
 
-    protected abstract void init();
+    protected abstract void init(View view);
 
     protected abstract void  createPresenter();
 }

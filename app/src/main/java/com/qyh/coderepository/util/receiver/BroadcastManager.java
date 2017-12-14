@@ -14,10 +14,10 @@ import java.util.Map;
  * [A brief description]
  * <p/>
  * //在任何地方发送广播
- * BroadcastManager.getInstance(mContext).sendBroadcast(FindOrderActivity.ACTION_RECEIVE_MESSAGE);
+ * BroadcastManager.getInstance(context).sendBroadcast(FindOrderActivity.ACTION_RECEIVE_MESSAGE);
  * <p/>
  * //页面在oncreate中初始化广播
- * BroadcastManager.getInstance(mContext).addAction(ACTION_RECEIVE_MESSAGE, new BroadcastReceiver(){
+ * BroadcastManager.getInstance(context).addAction(ACTION_RECEIVE_MESSAGE, new BroadcastReceiver(){
  *
  * @author huxinwu
  * @version 1.0
@@ -34,7 +34,7 @@ import java.util.Map;
  * });
  * <p/>
  * //页面在ondestory销毁广播
- * BroadcastManager.getInstance(mContext).destroy(ACTION_RECEIVE_MESSAGE);
+ * BroadcastManager.getInstance(context).destroy(ACTION_RECEIVE_MESSAGE);
  * @date 2015-9-17
  **/
 public class BroadcastManager {
@@ -125,7 +125,7 @@ public class BroadcastManager {
         //            Intent intent = new Intent();
         //            intent.setAction(action);
         //            intent.putExtra("result", JsonMananger.beanToJson(obj));
-        //            mContext.sendBroadcast(intent);
+        //            context.sendBroadcast(intent);
         //        } catch (HttpException e) {
         //            e.printStackTrace();
         //        }
