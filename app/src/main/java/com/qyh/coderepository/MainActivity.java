@@ -18,7 +18,8 @@ import com.qyh.coderepository.menu.database.DBFragment;
 import com.qyh.coderepository.menu.executor.ThreadExecutorFragment;
 import com.qyh.coderepository.menu.killer.KillerFragment;
 import com.kc.common.util.fragment.FragmentStack;
-import com.qyh.coderepository.util.log.LoggerUtil;
+import com.qyh.coderepository.menu.mvp.MvpFragment;
+import com.kc.common.util.log.LoggerUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -85,6 +86,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.menu_nav_runnable:
                 /** 任务队列 */
                 fragmentStack.replace(new ThreadExecutorFragment());
+                break;
+            case R.id.menu_nav_mvp:
+                /** MVP */
+                fragmentStack.replace(new MvpFragment());
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);

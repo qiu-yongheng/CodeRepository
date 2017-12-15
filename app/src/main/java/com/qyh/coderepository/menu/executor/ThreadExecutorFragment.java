@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.qyh.coderepository.R;
-import com.qyh.coderepository.util.log.LoggerUtil;
+import com.kc.common.util.log.LoggerUtil;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;

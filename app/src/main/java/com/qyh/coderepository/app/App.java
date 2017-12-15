@@ -11,6 +11,7 @@ import com.qyh.coderepository.menu.dagger.component.BaseComponent;
 import com.qyh.coderepository.menu.dagger.component.DaggerBaseComponent;
 import com.qyh.coderepository.menu.dagger.module.BaseModule;
 import com.qyh.coderepository.menu.database.manager.DbHelper;
+import com.kc.common.util.toast.ToastManager;
 
 
 /**
@@ -29,7 +30,12 @@ public class App extends Application{
         baseComponent = DaggerBaseComponent.builder().baseModule(new BaseModule()).build();
 
         initLogger();
+        initToast();
         DbHelper.getInstance().init(this);
+    }
+
+    private void initToast() {
+        ToastManager.getToast().init(this);
     }
 
     private void initLogger() {

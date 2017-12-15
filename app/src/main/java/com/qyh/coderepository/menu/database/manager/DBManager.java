@@ -2,7 +2,7 @@ package com.qyh.coderepository.menu.database.manager;
 
 import android.database.sqlite.SQLiteException;
 
-import com.qyh.coderepository.util.log.LoggerUtil;
+import com.kc.common.util.log.LoggerUtil;
 
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.annotation.NotNull;

@@ -37,9 +37,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (presenter != null) {
-            presenter.detachView();
-        }
     }
 
     protected void setToolBar(AppCompatActivity activity, Toolbar toolbar, String title) {

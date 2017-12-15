@@ -1,4 +1,4 @@
-package com.qyh.coderepository.util.notify;
+package com.kc.common.util.notify;
 
 import android.app.Notification;
 import android.app.NotificationManager;

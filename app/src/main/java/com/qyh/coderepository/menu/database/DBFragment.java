@@ -17,7 +17,7 @@ import com.qyh.coderepository.R;
 import com.qyh.coderepository.menu.database.manager.DbHelper;
 import com.qyh.coderepository.entity.Student;
 import com.qyh.coderepository.entity.StudentDao;
-import com.qyh.coderepository.util.log.LoggerUtil;
+import com.kc.common.util.log.LoggerUtil;
 
 import java.util.ArrayList;
 import java.util.List;

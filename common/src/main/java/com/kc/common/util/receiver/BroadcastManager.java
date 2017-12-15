@@ -1,4 +1,4 @@
-package com.qyh.coderepository.util.receiver;
+package com.kc.common.util.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

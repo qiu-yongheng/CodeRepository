@@ -1,4 +1,4 @@
-package com.qyh.coderepository.util.toast;
+package com.kc.common.util.toast;
 
 /**
  * @author 邱永恒

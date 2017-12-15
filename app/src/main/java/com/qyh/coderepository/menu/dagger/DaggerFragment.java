@@ -18,7 +18,7 @@ import com.qyh.coderepository.menu.dagger.data.ClothHandler;
 import com.qyh.coderepository.menu.dagger.data.Clothes;
 import com.qyh.coderepository.menu.dagger.data.Shoe;
 import com.qyh.coderepository.menu.dagger.module.DaggerModule;
-import com.qyh.coderepository.util.log.LoggerUtil;
+import com.kc.common.util.log.LoggerUtil;
 
 import javax.inject.Inject;
 import javax.inject.Named;

@@ -11,19 +11,25 @@ import com.kc.common.base.MyPresenter;
  */
 
 
-public class MvpPresenter extends MyPresenter<MvpContract.View> implements MvpContract.Presenter{
+public class MvpPresenter extends MyPresenter<MvpContract.View> implements MvpContract.Presenter {
+    private int i = 0;
 
-    public MvpPresenter(Context context, MvpContract.View view) {
+    MvpPresenter(Context context, MvpContract.View view) {
         super(context, view);
     }
 
     @Override
     public void getResult() {
-        getView().showResult(true);
+        i++;
+        if (i < 3) {
+            getView().showError("出错, 请重试");
+        } else {
+            getView().showResult(true);
+        }
     }
 
     @Override
     public void unSubscribe() {
-
+        getCompositeDisposable().clear();
     }
 }

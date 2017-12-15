@@ -1,4 +1,4 @@
-package com.qyh.coderepository.util.log;
+package com.kc.common.util.log;
 
 import com.orhanobut.logger.Logger;
 
@@ -17,8 +17,8 @@ public class LoggerUtil{
         Logger.d(object);
     }
 
-    public void e(String message, Object... args) {
-
+    public static void e(String message, Object... args) {
+        Logger.e(message, args);
     }
 
     public static void e(Throwable throwable) {

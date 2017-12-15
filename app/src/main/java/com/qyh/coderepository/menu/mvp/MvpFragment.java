@@ -4,6 +4,7 @@ import android.view.View;
 
 import com.kc.common.base.BaseFragment;
 import com.qyh.coderepository.R;
+import com.kc.common.util.toast.ToastManager;
 
 /**
  * @author 邱永恒
@@ -15,7 +16,7 @@ import com.qyh.coderepository.R;
 public class MvpFragment extends BaseFragment<MvpContract.Presenter> implements MvpContract.View, View.OnClickListener {
     @Override
     public void showError(String msg) {
-
+        ToastManager.getToast().tip(msg);
     }
 
     @Override
@@ -35,16 +36,16 @@ public class MvpFragment extends BaseFragment<MvpContract.Presenter> implements 
 
     @Override
     protected void createPresenter() {
-
+        presenter = new MvpPresenter(getContext(), this);
     }
 
     @Override
     public void onClick(View v) {
-
+        presenter.getResult();
     }
 
     @Override
     public void showResult(boolean isSuccess) {
-
+        ToastManager.getToast().tip("结果: " + isSuccess);
     }
 }
