@@ -6,6 +6,8 @@ import com.kc.common.base.BaseFragment;
 import com.qyh.coderepository.R;
 import com.kc.common.util.toast.ToastManager;
 
+import io.reactivex.disposables.CompositeDisposable;
+
 /**
  * @author 邱永恒
  * @time 2017/12/14  21:59
@@ -36,7 +38,7 @@ public class MvpFragment extends BaseFragment<MvpContract.Presenter> implements 
 
     @Override
     protected void createPresenter() {
-        presenter = new MvpPresenter(getContext(), this);
+        presenter = new MvpPresenter(getContext(), this, new CompositeDisposable());
     }
 
     @Override

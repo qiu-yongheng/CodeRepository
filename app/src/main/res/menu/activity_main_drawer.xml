@@ -17,4 +17,7 @@
     <item
         android:id="@+id/menu_nav_mvp"
         android:title="封装MVP"/>
+    <item
+        android:id="@+id/menu_nav_view"
+        android:title="自定义View"/>
 </menu>

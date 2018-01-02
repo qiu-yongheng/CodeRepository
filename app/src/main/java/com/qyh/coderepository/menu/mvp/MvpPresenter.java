@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.kc.common.base.MyPresenter;
 
+import io.reactivex.disposables.CompositeDisposable;
+
 /**
  * @author 邱永恒
  * @time 2017/12/14  22:23
@@ -14,8 +16,8 @@ import com.kc.common.base.MyPresenter;
 public class MvpPresenter extends MyPresenter<MvpContract.View> implements MvpContract.Presenter {
     private int i = 0;
 
-    MvpPresenter(Context context, MvpContract.View view) {
-        super(context, view);
+    public MvpPresenter(Context context, MvpContract.View view, CompositeDisposable compositeDisposable) {
+        super(context, view, compositeDisposable);
     }
 
     @Override
