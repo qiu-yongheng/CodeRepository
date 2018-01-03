@@ -5,11 +5,13 @@ import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatSeekBar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.BounceInterpolator;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.qyh.coderepository.R;
@@ -24,7 +26,7 @@ import butterknife.Unbinder;
  * @desc ${TODD}
  */
 
-public class ViewFragment extends Fragment implements View.OnClickListener {
+public class ViewFragment extends Fragment implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
     @BindView(R.id.iv_menu)
     ImageView ivMenu;
     @BindView(R.id.iv_1)
@@ -36,6 +38,18 @@ public class ViewFragment extends Fragment implements View.OnClickListener {
     @BindView(R.id.iv_4)
     ImageView iv4;
     Unbinder unbinder;
+    @BindView(R.id.rquad_to_view)
+    RQuadToView rquadToView;
+    @BindView(R.id.sb_height)
+    AppCompatSeekBar sbHeight;
+    @BindView(R.id.sb_speed)
+    AppCompatSeekBar sbSpeed;
+    @BindView(R.id.sb_wave)
+    AppCompatSeekBar sbWave;
+    @BindView(R.id.sb_wave_height)
+    AppCompatSeekBar sbWaveHeight;
+    @BindView(R.id.ql)
+    QuadLinearLayout ql;
     private boolean isOpen;
 
     @Nullable
@@ -43,8 +57,14 @@ public class ViewFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_view, container, false);
         unbinder = ButterKnife.bind(this, view);
+        initView();
         initListener();
         return view;
+    }
+
+    private void initView() {
+        //rquadToView.startAnim();
+        ql.startAnim();
     }
 
     private void initListener() {
@@ -53,6 +73,10 @@ public class ViewFragment extends Fragment implements View.OnClickListener {
         iv2.setOnClickListener(this);
         iv3.setOnClickListener(this);
         iv4.setOnClickListener(this);
+        sbHeight.setOnSeekBarChangeListener(this);
+        sbSpeed.setOnSeekBarChangeListener(this);
+        sbWave.setOnSeekBarChangeListener(this);
+        sbWaveHeight.setOnSeekBarChangeListener(this);
     }
 
     @Override
@@ -102,7 +126,7 @@ public class ViewFragment extends Fragment implements View.OnClickListener {
         if (view.getVisibility() != View.VISIBLE) {
             view.setVisibility(View.VISIBLE);
         }
-        double degree = Math.toRadians(90)/(total - 1) * index;
+        double degree = Math.toRadians(90) / (total - 1) * index;
         int translationX = -(int) (radius * Math.sin(degree));
         int translationY = -(int) (radius * Math.cos(degree));
 
@@ -121,7 +145,7 @@ public class ViewFragment extends Fragment implements View.OnClickListener {
     }
 
     private void doAnimateClose(View view, int index, int total, int radius) {
-        double degree = Math.toRadians(90)/(total - 1) * index;
+        double degree = Math.toRadians(90) / (total - 1) * index;
         int translationX = -(int) (radius * Math.sin(degree));
         int translationY = -(int) (radius * Math.cos(degree));
 
@@ -136,5 +160,33 @@ public class ViewFragment extends Fragment implements View.OnClickListener {
                 ObjectAnimator.ofFloat(view, "alpha", 1f, 0f));
         //动画周期为500ms
         set.setDuration(500).start();
+    }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        switch (seekBar.getId()) {
+            case R.id.sb_height:
+                rquadToView.setHeight(progress);
+                break;
+            case R.id.sb_speed:
+                rquadToView.setSpeed(progress);
+                break;
+            case R.id.sb_wave:
+                rquadToView.setWave(progress);
+                break;
+            case R.id.sb_wave_height:
+                rquadToView.setWaveHeight(progress);
+                break;
+        }
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
     }
 }

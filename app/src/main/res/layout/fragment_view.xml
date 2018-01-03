@@ -2,9 +2,147 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/dp_10"
-    android:layout_marginRight="@dimen/dp_10">
+    android:layout_height="match_parent">
+
+    <com.qyh.coderepository.menu.view.QuadToView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatSeekBar
+                android:id="@+id/sb_height"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:text="高度"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatSeekBar
+                android:id="@+id/sb_speed"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:text="速度"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatSeekBar
+                android:id="@+id/sb_wave"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:text="周期"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatSeekBar
+                android:id="@+id/sb_wave_height"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:text="振幅"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <com.qyh.coderepository.menu.view.RQuadToView
+            android:id="@+id/rquad_to_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+
+    <com.qyh.coderepository.menu.view.QuadLinearLayout
+        android:id="@+id/ql"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_margin="24dp"
+        android:background="@drawable/quad_background"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:src="@mipmap/heart_icon"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="速度"
+            android:textColor="#000"
+            android:textSize="@dimen/sp_16"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="路程"
+            android:textColor="#000"
+            android:textSize="@dimen/sp_16"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="卡路里"
+            android:textColor="#000"
+            android:textSize="@dimen/sp_16"/>
+
+
+    </com.qyh.coderepository.menu.view.QuadLinearLayout>
+
 
     <ImageView
         android:id="@+id/iv_menu"
@@ -12,33 +150,37 @@
         android:layout_height="50dp"
         android:layout_gravity="bottom|right"
         android:background="@mipmap/item_5"/>
+
     <ImageView
         android:id="@+id/iv_1"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:visibility="gone"
         android:layout_gravity="bottom|right"
-        android:background="@mipmap/item_1"/>
+        android:background="@mipmap/item_1"
+        android:visibility="gone"/>
+
     <ImageView
         android:id="@+id/iv_2"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:visibility="gone"
         android:layout_gravity="bottom|right"
-        android:background="@mipmap/item_2"/>
+        android:background="@mipmap/item_2"
+        android:visibility="gone"/>
+
     <ImageView
         android:id="@+id/iv_3"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:visibility="gone"
         android:layout_gravity="bottom|right"
-        android:background="@mipmap/item_3"/>
+        android:background="@mipmap/item_3"
+        android:visibility="gone"/>
+
     <ImageView
         android:id="@+id/iv_4"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:visibility="gone"
         android:layout_gravity="bottom|right"
-        android:background="@mipmap/item_4"/>
+        android:background="@mipmap/item_4"
+        android:visibility="gone"/>
 
 </FrameLayout>
