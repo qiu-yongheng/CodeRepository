@@ -16,7 +16,7 @@ import com.kc.common.util.log.LoggerUtil;
 /**
  * @author 邱永恒
  * @time 2018/1/3  13:29
- * @desc ${TODD}
+ * @desc 贝塞尔曲线动画
  */
 
 public class RQuadToView extends View {

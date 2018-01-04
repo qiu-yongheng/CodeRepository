@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 /**
  * @author 邱永恒
  * @time 2018/1/3  15:32
- * @desc ${TODD}
+ * @desc LinearLayout实现贝塞尔曲线动画背景
  */
 
 public class QuadLinearLayout extends LinearLayout{
