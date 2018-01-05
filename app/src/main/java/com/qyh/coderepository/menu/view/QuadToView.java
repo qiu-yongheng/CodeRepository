@@ -13,7 +13,7 @@ import android.view.View;
 /**
  * @author 邱永恒
  * @time 2018/1/3  11:09
- * @desc ${TODD}
+ * @desc 贝塞尔曲线优化的画图控件
  */
 
 public class QuadToView extends View{
