@@ -59,9 +59,9 @@ public class QuadLinearLayout extends LinearLayout{
     @Override
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-
         paint.setColor(Color.argb(40, 0, 200, 0));
         path.reset();
+
         int halfWaveLen = mItemWaveLength / 2;
         path.moveTo(-mItemWaveLength + dx, originY + dy);
         for (int i = -mItemWaveLength; i <= getWidth() + mItemWaveLength; i += mItemWaveLength) {
