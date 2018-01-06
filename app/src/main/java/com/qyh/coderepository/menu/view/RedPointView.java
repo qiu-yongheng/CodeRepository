@@ -6,15 +6,18 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
+import android.graphics.Rect;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.kc.common.util.log.LoggerUtil;
+import com.qyh.coderepository.R;
 
 /**
  * @author 邱永恒
@@ -25,27 +28,33 @@ import com.kc.common.util.log.LoggerUtil;
 
 public class RedPointView extends FrameLayout {
 
+    private Context context;
     private PointF startPointF;
     private PointF currentPointF;
     private Paint paint;
     private boolean isTouch;
     private float DEFAULT_RADIUS = 20;
-    private float radio;
+    private float radio = DEFAULT_RADIUS;
     private Path path;
     private boolean isAnimStart;
+    private TextView textView;
+    private ImageView imageView;
 
     public RedPointView(@NonNull Context context) {
         super(context);
+        this.context = context;
         initView();
     }
 
     public RedPointView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        this.context = context;
         initView();
     }
 
     public RedPointView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        this.context = context;
         initView();
     }
 
@@ -61,19 +70,39 @@ public class RedPointView extends FrameLayout {
         // 画笔
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setColor(Color.RED);
+
+        // 创建TextView
+        LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        textView = new TextView(context);
+        textView.setLayoutParams(layoutParams);
+        textView.setBackgroundResource(R.drawable.red_point_tv_bg);
+        textView.setText("99+");
+        textView.setPadding(10, 10, 10, 10);
+        this.addView(textView);
+
+        // 创建ImageView
+        imageView = new ImageView(context);
+        imageView.setLayoutParams(layoutParams);
+        imageView.setImageResource(R.drawable.explode);
+        imageView.setVisibility(INVISIBLE);
+        this.addView(imageView);
     }
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        // 绘制开始的原点
-        canvas.drawCircle(startPointF.x, startPointF.y, DEFAULT_RADIUS, paint);
-
         // 如果触摸了控件, 绘制小圆点
-        if (isTouch) {
+        if (isTouch && !isAnimStart) {
             // 绘制贝塞尔曲线
             calculatePath();
             canvas.drawPath(path, paint);
-            canvas.drawCircle(currentPointF.x, currentPointF.y, DEFAULT_RADIUS, paint);
+            canvas.drawCircle(startPointF.x, startPointF.y, radio, paint);
+            canvas.drawCircle(currentPointF.x, currentPointF.y, radio, paint);
+
+            textView.setX(currentPointF.x - textView.getWidth()/2);
+            textView.setY(currentPointF.y - textView.getHeight()/2);
+        } else {
+            textView.setX(startPointF.x - textView.getWidth() / 2);
+            textView.setY(startPointF.y - textView.getHeight() / 2);
         }
 
         super.dispatchDraw(canvas);
@@ -90,15 +119,23 @@ public class RedPointView extends FrameLayout {
         float dy = y - startY;
         // 计算角度
         double a = Math.atan(dy / dx);
-        float offsetX = (float) (DEFAULT_RADIUS * Math.sin(a));
-        float offsetY = (float) (DEFAULT_RADIUS * Math.cos(a));
+        float offsetX = (float) (radio * Math.sin(a));
+        float offsetY = (float) (radio * Math.cos(a));
 
         // 动态改变半径
-        /*float distance = (float) Math.sqrt(Math.pow(y - startY, 2) + Math.pow(x - startX, 2));
+        float distance = (float) Math.sqrt(Math.pow(y - startY, 2) + Math.pow(x - startX, 2));
         radio = -distance / 15 + DEFAULT_RADIUS;
         if (radio < 9) {
+            radio = 9;
             isAnimStart = true;
-        }*/
+
+            imageView.setX(currentPointF.x - textView.getWidth()/2);
+            imageView.setY(currentPointF.y - textView.getHeight()/2);
+            imageView.setVisibility(VISIBLE);
+            ((AnimationDrawable)imageView.getDrawable()).start();
+
+            textView.setVisibility(GONE);
+        }
 
         // 根据角度算出四边形的四个点
         float x1 = startX - offsetX;
@@ -128,10 +165,20 @@ public class RedPointView extends FrameLayout {
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                isTouch = true;
+                Rect rect = new Rect();
+                int[] location = new int[2];
+                textView.getLocationOnScreen(location);
+                rect.left = location[0];
+                rect.top = location[1];
+                rect.right = textView.getWidth() + location[0];
+                rect.bottom = textView.getHeight() + location[1];
+                if (rect.contains((int) event.getRawX(), (int) event.getRawY())) {
+                    isTouch = true;
+                }
                 break;
             case MotionEvent.ACTION_UP:
                 isTouch = false;
+                radio = DEFAULT_RADIUS;
                 break;
         }
 

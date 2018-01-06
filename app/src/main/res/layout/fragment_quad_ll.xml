@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.qyh.coderepository.menu.view.QuadLinearLayout
+        android:id="@+id/ql"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_margin="24dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/quad_background"
+        android:gravity="center_vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:src="@mipmap/heart_icon"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="速度"
+            android:textColor="#000"
+            android:textSize="@dimen/sp_16"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="路程"
+            android:textColor="#000"
+            android:textSize="@dimen/sp_16"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="卡路里"
+            android:textColor="#000"
+            android:textSize="@dimen/sp_16"/>
+
+
+    </com.qyh.coderepository.menu.view.QuadLinearLayout>
+
+</android.support.constraint.ConstraintLayout>

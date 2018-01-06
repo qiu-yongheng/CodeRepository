@@ -93,21 +93,21 @@ public class RQuadToView extends View {
         }
     }
 
-    public void setHeight(int height) {
-        originY = 300 + getHeight() * height / 100;
+    public void setHeight(int progress) {
+        originY = 300 + getHeight() * progress / 100;
         invalidate();
     }
 
-    public void setSpeed(int speed) {
-        time = 10000 - 9000 * speed / 100;
+    public void setSpeed(int progress) {
+        time = 10000 - 9000 * progress / 100;
         invalidate();
         if (animator != null) {
             animator.setDuration(time);
         }
     }
 
-    public void setWave(int wave) {
-        mItemWaveLength = 1500 - 1200 * wave / 100;
+    public void setWave(int progress) {
+        mItemWaveLength = 1500 - 1200 * progress / 100;
         invalidate();
         if (animator != null) {
             animator.setIntValues(mItemWaveLength);
