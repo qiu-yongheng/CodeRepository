@@ -11,6 +11,7 @@ import android.widget.Button;
 import com.qyh.coderepository.MainActivity;
 import com.qyh.coderepository.R;
 import com.qyh.coderepository.menu.view.fragment.ExplosionFragment;
+import com.qyh.coderepository.menu.view.fragment.LinearGradientFragment;
 import com.qyh.coderepository.menu.view.fragment.QuadFragment;
 import com.qyh.coderepository.menu.view.fragment.QuadLlFragment;
 import com.qyh.coderepository.menu.view.fragment.RedPointFragment;
@@ -36,6 +37,8 @@ public class ViewFragment extends Fragment implements View.OnClickListener {
     @BindView(R.id.btn_explosion)
     Button btnExplosion;
     Unbinder unbinder;
+    @BindView(R.id.btn_ll_shape)
+    Button btnLlShape;
 
     @Nullable
     @Override
@@ -56,6 +59,7 @@ public class ViewFragment extends Fragment implements View.OnClickListener {
         btnQuadLl.setOnClickListener(this);
         btnRedPoint.setOnClickListener(this);
         btnExplosion.setOnClickListener(this);
+        btnLlShape.setOnClickListener(this);
     }
 
     @Override
@@ -78,6 +82,9 @@ public class ViewFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.btn_explosion: // 爆炸悬浮框
                 ((MainActivity) getActivity()).push(new ExplosionFragment());
+                break;
+            case R.id.btn_ll_shape: // 闪动文字
+                ((MainActivity) getActivity()).push(new LinearGradientFragment());
                 break;
         }
     }

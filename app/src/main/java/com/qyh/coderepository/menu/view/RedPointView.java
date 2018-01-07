@@ -118,7 +118,7 @@ public class RedPointView extends FrameLayout {
         float dx = x - startX;
         float dy = y - startY;
         // 计算角度
-        double a = Math.atan(dy / dx);
+        double a = Math.atan(dy / dx); // 计算角度对应弧度
         float offsetX = (float) (radio * Math.sin(a));
         float offsetY = (float) (radio * Math.cos(a));
 
