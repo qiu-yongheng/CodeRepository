@@ -2,6 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.qyh.coderepository">
 
+    <!-- 集成时请添加下列权限 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
     <application
         android:name=".app.App"
         android:allowBackup="true"
@@ -10,6 +21,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!-- 设置APP_ID, APP_KEY, APP_SECRET -->
+        <meta-data
+            android:name="com.baidu.speech.APP_ID"
+            android:value="10711638"/>
+        <meta-data
+            android:name="com.baidu.speech.API_KEY"
+            android:value="YYKX4Zf5l86D0yzlqufWnb3W"/>
+        <meta-data
+            android:name="com.baidu.speech.SECRET_KEY"
+            android:value="f7a875ea89d67d713b1bf6a24464a8ac"/>
+
+        <!-- 识别Service -->
+        <service
+            android:name="com.baidu.speech.VoiceRecognitionService"
+            android:exported="false"/>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

@@ -38,7 +38,8 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-    compile 'com.blankj:utilcode:1.9.8'
+    // util
+    compile 'com.blankj:utilcode:1.12.0'
     // logger
     compile 'com.orhanobut:logger:2.1.1'
 }

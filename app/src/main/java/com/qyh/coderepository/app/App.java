@@ -2,6 +2,7 @@ package com.qyh.coderepository.app;
 
 import android.app.Application;
 
+import com.blankj.utilcode.util.Utils;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.LogcatLogStrategy;
@@ -31,6 +32,7 @@ public class App extends Application{
 
         initLogger();
         initToast();
+        Utils.init(this);
         DbHelper.getInstance().init(this);
     }
 

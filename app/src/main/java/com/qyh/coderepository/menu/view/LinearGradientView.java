@@ -80,7 +80,7 @@ public class LinearGradientView extends View{
                 invalidate();
             }
         });
-        animator.setRepeatCount(Integer.MAX_VALUE);
+        animator.setRepeatCount(ValueAnimator.INFINITE);
         animator.setDuration(3000);
         animator.start();
     }
