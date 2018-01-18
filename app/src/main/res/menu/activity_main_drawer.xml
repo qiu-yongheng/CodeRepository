@@ -20,4 +20,10 @@
     <item
         android:id="@+id/menu_nav_view"
         android:title="自定义View"/>
+    <item
+        android:id="@+id/menu_nav_tts"
+        android:title="语音合成"/>
+    <item
+        android:id="@+id/menu_nav_asr"
+        android:title="语音识别"/>
 </menu>

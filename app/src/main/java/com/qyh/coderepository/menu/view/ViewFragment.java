@@ -14,7 +14,10 @@ import com.qyh.coderepository.menu.view.fragment.ExplosionFragment;
 import com.qyh.coderepository.menu.view.fragment.LinearGradientFragment;
 import com.qyh.coderepository.menu.view.fragment.QuadFragment;
 import com.qyh.coderepository.menu.view.fragment.QuadLlFragment;
+import com.qyh.coderepository.menu.view.fragment.RadialFragment;
 import com.qyh.coderepository.menu.view.fragment.RedPointFragment;
+import com.qyh.coderepository.menu.view.fragment.ShadowFragment;
+import com.qyh.coderepository.menu.view.fragment.ZonbiFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,6 +42,12 @@ public class ViewFragment extends Fragment implements View.OnClickListener {
     Unbinder unbinder;
     @BindView(R.id.btn_ll_shape)
     Button btnLlShape;
+    @BindView(R.id.btn_shadow)
+    Button btnShadow;
+    @BindView(R.id.btn_radial)
+    Button btnRadial;
+    @BindView(R.id.btn_bitmap)
+    Button btnBitmap;
 
     @Nullable
     @Override
@@ -60,6 +69,9 @@ public class ViewFragment extends Fragment implements View.OnClickListener {
         btnRedPoint.setOnClickListener(this);
         btnExplosion.setOnClickListener(this);
         btnLlShape.setOnClickListener(this);
+        btnShadow.setOnClickListener(this);
+        btnRadial.setOnClickListener(this);
+        btnBitmap.setOnClickListener(this);
     }
 
     @Override
@@ -85,6 +97,15 @@ public class ViewFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.btn_ll_shape: // 闪动文字
                 ((MainActivity) getActivity()).push(new LinearGradientFragment());
+                break;
+            case R.id.btn_shadow: // 阴影效果
+                ((MainActivity) getActivity()).push(new ShadowFragment());
+                break;
+            case R.id.btn_radial: // 波形按钮
+                ((MainActivity) getActivity()).push(new RadialFragment());
+                break;
+            case R.id.btn_bitmap: // 图片动画
+                ((MainActivity) getActivity()).push(new ZonbiFragment());
                 break;
         }
     }
