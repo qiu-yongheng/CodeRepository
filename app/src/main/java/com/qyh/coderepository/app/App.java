@@ -3,16 +3,17 @@ package com.qyh.coderepository.app;
 import android.app.Application;
 
 import com.blankj.utilcode.util.Utils;
+import com.kc.common.util.toast.ToastManager;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.LogcatLogStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
+import com.qyh.coderepository.baidu.asr.ui.DigitalDialogInput;
 import com.qyh.coderepository.menu.dagger.component.BaseComponent;
 import com.qyh.coderepository.menu.dagger.component.DaggerBaseComponent;
 import com.qyh.coderepository.menu.dagger.module.BaseModule;
 import com.qyh.coderepository.menu.database.manager.DbHelper;
-import com.kc.common.util.toast.ToastManager;
 
 
 /**
@@ -23,6 +24,7 @@ import com.kc.common.util.toast.ToastManager;
 
 public class App extends Application{
     private BaseComponent baseComponent;
+    private DigitalDialogInput digitalDialogInput;
 
     @Override
     public void onCreate() {
@@ -54,5 +56,13 @@ public class App extends Application{
 
     public BaseComponent getBaseComponent() {
         return baseComponent;
+    }
+
+    public DigitalDialogInput getDigitalDialogInput() {
+        return digitalDialogInput;
+    }
+
+    public void setDigitalDialogInput(DigitalDialogInput digitalDialogInput) {
+        this.digitalDialogInput = digitalDialogInput;
     }
 }

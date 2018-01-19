@@ -72,7 +72,7 @@ public class MyRecognizer {
         Logger.info(TAG + ".Debug", "loadOfflineEngine params:" + json);
         asr.send(SpeechConstant.ASR_KWS_LOAD_ENGINE, json, null, 0, 0);
         isOfflineEngineLoaded = true;
-        // 没有ASR_KWS_LOAD_ENGINE这个回调表试失败，如缺少第一次联网时下载的正式授权文件。
+        // 没有ASR_KWS_LOAD_ENGINE这个回调表示失败，如缺少第一次联网时下载的正式授权文件。
     }
 
     public void start(Map<String, Object> params) {

@@ -21,12 +21,12 @@ import android.widget.Toast;
 import com.kc.common.util.fragment.FragmentStack;
 import com.kc.common.util.log.LoggerUtil;
 import com.qyh.coderepository.menu.baidu.asr.AsrFragment;
+import com.qyh.coderepository.menu.baidu.tts.TtsFragment;
 import com.qyh.coderepository.menu.dagger.DaggerFragment;
 import com.qyh.coderepository.menu.database.DBFragment;
 import com.qyh.coderepository.menu.executor.ThreadExecutorFragment;
 import com.qyh.coderepository.menu.killer.KillerFragment;
 import com.qyh.coderepository.menu.mvp.MvpFragment;
-import com.qyh.coderepository.menu.baidu.tts.TtsFragment;
 import com.qyh.coderepository.menu.view.ViewFragment;
 
 import java.util.ArrayList;
@@ -152,7 +152,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Manifest.permission.WRITE_SETTINGS,
                 Manifest.permission.READ_PHONE_STATE,
                 Manifest.permission.ACCESS_WIFI_STATE,
-                Manifest.permission.CHANGE_WIFI_STATE
+                Manifest.permission.CHANGE_WIFI_STATE,
+                Manifest.permission.RECORD_AUDIO
         };
         ArrayList<String> toApplyList = new ArrayList<String>();
 

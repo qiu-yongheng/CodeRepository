@@ -38,6 +38,10 @@ public interface IRecogListener {
      */
     void onAsrFinalResult(String[] results, RecogResult recogResult);
 
+    /**
+     * 识别一段话结束。如果是长语音的情况会继续识别下段话
+     * @param recogResult
+     */
     void onAsrFinish(RecogResult recogResult);
 
     void onAsrFinishError(int errorCode, int subErrorCode, String errorMessage, String descMessage,
@@ -54,6 +58,10 @@ public interface IRecogListener {
 
     void onAsrExit();
 
+    /**
+     * 原始语义识别结果
+     * @param nluResult
+     */
     void onAsrOnlineNluResult(String nluResult);
 
     void onOfflineLoaded();
