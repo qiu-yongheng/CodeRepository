@@ -20,6 +20,7 @@ public class NluResult {
     private String domain;
     private String intent;
     private String object;
+    private double score;
 
 
     public static NluResult parseJson(String jsonStr) {
@@ -50,10 +51,12 @@ public class NluResult {
                 String domain = resultObject.optString("domain");
                 String intent = resultObject.optString("intent");
                 String object = resultObject.optString("object");
+                double score = resultObject.optDouble("score");
 
                 result.setDomain(domain);
                 result.setIntent(intent);
                 result.setObject(object);
+                result.setScore(score);
             }
 
 
@@ -133,5 +136,13 @@ public class NluResult {
 
     public void setObject(String object) {
         this.object = object;
+    }
+
+    public double getScore() {
+        return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
     }
 }

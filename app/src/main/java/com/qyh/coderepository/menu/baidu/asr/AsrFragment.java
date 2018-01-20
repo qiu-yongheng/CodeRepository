@@ -7,6 +7,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,16 +20,19 @@ import com.qyh.coderepository.R;
 import com.qyh.coderepository.app.App;
 import com.qyh.coderepository.baidu.asr.control.MyRecognizer;
 import com.qyh.coderepository.baidu.asr.recognization.ChainRecogListener;
-import com.qyh.coderepository.baidu.asr.recognization.IRecogListener;
+import com.qyh.coderepository.baidu.asr.recognization.EventRecogListener;
 import com.qyh.coderepository.baidu.asr.recognization.MessageStatusRecogListener;
 import com.qyh.coderepository.baidu.asr.recognization.NluResult;
-import com.qyh.coderepository.baidu.asr.recognization.RecogResult;
 import com.qyh.coderepository.baidu.asr.recognization.offline.OfflineRecogParams;
 import com.qyh.coderepository.baidu.asr.recognization.online.OnlineRecogParams;
 import com.qyh.coderepository.baidu.asr.ui.BaiduASRDigitalDialog;
 import com.qyh.coderepository.baidu.asr.ui.DigitalDialogInput;
 import com.qyh.coderepository.baidu.asr.util.Logger;
 import com.qyh.coderepository.baidu.tts.TtsUtil;
+import com.qyh.coderepository.menu.baidu.asr.domain.AppDomain;
+import com.qyh.coderepository.menu.baidu.asr.domain.Domain;
+import com.qyh.coderepository.menu.baidu.asr.domain.NormalDomain;
+import com.qyh.coderepository.menu.baidu.asr.domain.WeatherDomain;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -82,86 +86,7 @@ public class AsrFragment extends Fragment {
         Logger.setHandler(handler);
         chainRecogListener = new ChainRecogListener();
         chainRecogListener.addListener(new MessageStatusRecogListener(handler));
-        chainRecogListener.addListener(new IRecogListener() {
-            @Override
-            public void onAsrReady() {
-
-            }
-
-            @Override
-            public void onAsrBegin() {
-
-            }
-
-            @Override
-            public void onAsrEnd() {
-
-            }
-
-            @Override
-            public void onAsrPartialResult(String[] results, RecogResult recogResult) {
-
-            }
-
-            @Override
-            public void onAsrFinalResult(String[] results, RecogResult recogResult) {
-
-            }
-
-            @Override
-            public void onAsrFinish(RecogResult recogResult) {
-
-            }
-
-            @Override
-            public void onAsrFinishError(int errorCode, int subErrorCode, String errorMessage, String descMessage, RecogResult recogResult) {
-
-            }
-
-            @Override
-            public void onAsrLongFinish() {
-
-            }
-
-            @Override
-            public void onAsrVolume(int volumePercent, int volume) {
-
-            }
-
-            @Override
-            public void onAsrAudio(byte[] data, int offset, int length) {
-
-            }
-
-            @Override
-            public void onAsrExit() {
-
-            }
-
-            @Override
-            public void onAsrOnlineNluResult(String nluResult) {
-                NluResult result = NluResult.parseJson(nluResult);
-                if (result.getDomain().equals("app") && result.getIntent().equals("open")) {
-                    TtsUtil.getInstance().speak("好的, 我正在" + result.getRawText());
-                } else if (result.getDomain().equals("app") && result.getIntent().equals("uninstall")) {
-                    TtsUtil.getInstance().speak("我没有权限去做这件事");
-                } else if (result.getRawText().contains("傻逼")) {
-                    TtsUtil.getInstance().speak("是啊, 汪明是傻逼");
-                } else {
-                    TtsUtil.getInstance().speak("傻逼, 不知道你在说什么");
-                }
-            }
-
-            @Override
-            public void onOfflineLoaded() {
-
-            }
-
-            @Override
-            public void onOfflineUnLoaded() {
-
-            }
-        });
+        chainRecogListener.addListener(eventRecogListener);
         myRecognizer = new MyRecognizer(getContext(), chainRecogListener);
         if (enableOffline) {
             myRecognizer.loadOfflineEngine(OfflineRecogParams.fetchOfflineParams());
@@ -208,4 +133,28 @@ public class AsrFragment extends Fragment {
             myRecognizer.release();
         }
     }
+
+    /**
+     * 处理语义
+     */
+    EventRecogListener eventRecogListener = new EventRecogListener() {
+        @Override
+        public void onAsrOnlineNluResult(String nluResult) {
+            super.onAsrOnlineNluResult(nluResult);
+            NluResult result = NluResult.parseJson(nluResult);
+            Domain domain = new NormalDomain(result);
+            if (!TextUtils.isEmpty(result.getDomain())) {
+                switch (result.getDomain()) {
+                    case "weather":
+                        domain = new WeatherDomain(result);
+                        break;
+                    case "app":
+                        domain = new AppDomain(result);
+                        break;
+                }
+            }
+
+            domain.handle();
+        }
+    };
 }
