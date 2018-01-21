@@ -16,27 +16,38 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.baidu.speech.asr.SpeechConstant;
 import com.qyh.coderepository.R;
 import com.qyh.coderepository.app.App;
 import com.qyh.coderepository.baidu.asr.control.MyRecognizer;
+import com.qyh.coderepository.baidu.asr.control.MyWakeup;
 import com.qyh.coderepository.baidu.asr.recognization.ChainRecogListener;
 import com.qyh.coderepository.baidu.asr.recognization.EventRecogListener;
 import com.qyh.coderepository.baidu.asr.recognization.MessageStatusRecogListener;
 import com.qyh.coderepository.baidu.asr.recognization.NluResult;
+import com.qyh.coderepository.baidu.asr.recognization.PidBuilder;
 import com.qyh.coderepository.baidu.asr.recognization.offline.OfflineRecogParams;
 import com.qyh.coderepository.baidu.asr.recognization.online.OnlineRecogParams;
 import com.qyh.coderepository.baidu.asr.ui.BaiduASRDigitalDialog;
 import com.qyh.coderepository.baidu.asr.ui.DigitalDialogInput;
 import com.qyh.coderepository.baidu.asr.util.Logger;
+import com.qyh.coderepository.baidu.asr.wakeup.IWakeupListener;
+import com.qyh.coderepository.baidu.asr.wakeup.RecogWakeupListener;
 import com.qyh.coderepository.baidu.tts.TtsUtil;
 import com.qyh.coderepository.menu.baidu.asr.domain.AppDomain;
 import com.qyh.coderepository.menu.baidu.asr.domain.Domain;
 import com.qyh.coderepository.menu.baidu.asr.domain.NormalDomain;
 import com.qyh.coderepository.menu.baidu.asr.domain.WeatherDomain;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+
+import static com.qyh.coderepository.baidu.asr.recognization.IStatus.STATUS_WAKEUP_SUCCESS;
 
 /**
  * @author 邱永恒
@@ -54,6 +65,13 @@ public class AsrFragment extends Fragment {
     @BindView(R.id.tv_log)
     TextView tvLog;
     Unbinder unbinder;
+    /**
+     * 0: 方案1， 唤醒词说完后，直接接句子，中间没有停顿。
+     * >0 : 方案2： 唤醒词说完后，中间有停顿，然后接句子。推荐4个字 1500ms
+     * <p>
+     * backTrackInMs 最大 15000，即15s
+     */
+    private int backTrackInMs = 1500;
 
     private Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
@@ -62,12 +80,19 @@ public class AsrFragment extends Fragment {
             if (msg.obj != null) {
                 tvLog.append(msg.obj.toString() + "\n");
             }
+
+            if (msg.what == STATUS_WAKEUP_SUCCESS) {
+                // 此处 开始正常识别流程
+                myRecognizer.cancel();
+                startAsr(OnlineRecogParams.fetchOnlineParams(true));
+            }
         }
     };
     private MyRecognizer myRecognizer;
     protected boolean enableOffline = true;
     private ChainRecogListener chainRecogListener;
     private boolean running;
+    private MyWakeup myWakeup;
 
 
     @Nullable
@@ -81,8 +106,14 @@ public class AsrFragment extends Fragment {
         return view;
     }
 
-
+    /**
+     * 初始化语音识别:
+     * 1. 创建识别监听器
+     * 2. 创建MyRecognizer对象, 把监听器传入
+     * 3. 根据是否需要使用离线识别词, 去初始化离线识别
+     */
     private void initAsr() {
+        /** 语音识别 */
         Logger.setHandler(handler);
         chainRecogListener = new ChainRecogListener();
         chainRecogListener.addListener(new MessageStatusRecogListener(handler));
@@ -91,6 +122,10 @@ public class AsrFragment extends Fragment {
         if (enableOffline) {
             myRecognizer.loadOfflineEngine(OfflineRecogParams.fetchOfflineParams());
         }
+
+        /** 语音唤醒 */
+        IWakeupListener listener = new RecogWakeupListener(handler);
+        myWakeup = new MyWakeup(getContext(), listener);
     }
 
     private void initListener() {
@@ -99,14 +134,7 @@ public class AsrFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 tvLog.setText("");
-
-                // BaiduASRDigitalDialog的输入参数
-                DigitalDialogInput input = new DigitalDialogInput(myRecognizer, chainRecogListener, OnlineRecogParams.fetchOnlineParams(true));
-                Intent intent = new Intent(getContext(), BaiduASRDigitalDialog.class);
-                // 在BaiduASRDialog中读取
-                ((App) getContext().getApplicationContext()).setDigitalDialogInput(input);
-                running = true;
-                startActivityForResult(intent, 2);
+                startWakeup();
             }
         });
 
@@ -117,6 +145,35 @@ public class AsrFragment extends Fragment {
                 myRecognizer.stop();
             }
         });
+    }
+
+    /**
+     * 启动语音识别
+     * @param params
+     */
+    private void startAsr(Map<String, Object> params) {
+        // BaiduASRDigitalDialog的输入参数
+        DigitalDialogInput input = new DigitalDialogInput(myRecognizer, chainRecogListener, params);
+        Intent intent = new Intent(getContext(), BaiduASRDigitalDialog.class);
+        // 在BaiduASRDialog中读取
+        ((App) getContext().getApplicationContext()).setDigitalDialogInput(input);
+        running = true;
+        startActivityForResult(intent, 2);
+    }
+
+    /**
+     * 启动语音唤醒
+     */
+    private void startWakeup() {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put(SpeechConstant.WP_WORDS_FILE, "assets:///WakeUp.bin");
+        // "assets:///WakeUp.bin" 表示WakeUp.bin文件定义在assets目录下
+
+        // params.put(SpeechConstant.ACCEPT_AUDIO_DATA,true);
+        // params.put(SpeechConstant.ACCEPT_AUDIO_VOLUME,true);
+        // params.put(SpeechConstant.IN_FILE,"res:///com/baidu/android/voicedemo/wakeup.pcm");
+        // params里 "assets:///WakeUp.bin" 表示WakeUp.bin文件定义在assets目录下
+        myWakeup.start(params);
     }
 
     @Override

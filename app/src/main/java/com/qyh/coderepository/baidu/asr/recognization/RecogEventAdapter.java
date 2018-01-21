@@ -15,7 +15,7 @@ import org.json.JSONObject;
 /**
  * @author 邱永恒
  * @time 2018/1/18  21:38
- * @desc 适配器模式, 将EventListener转换成IRecogListener
+ * @desc 适配器模式, 将IRecogListener转换成EventListener
  */
 
 public class RecogEventAdapter implements EventListener {
