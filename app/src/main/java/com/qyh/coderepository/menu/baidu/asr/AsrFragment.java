@@ -25,7 +25,6 @@ import com.qyh.coderepository.baidu.asr.recognization.ChainRecogListener;
 import com.qyh.coderepository.baidu.asr.recognization.EventRecogListener;
 import com.qyh.coderepository.baidu.asr.recognization.MessageStatusRecogListener;
 import com.qyh.coderepository.baidu.asr.recognization.NluResult;
-import com.qyh.coderepository.baidu.asr.recognization.PidBuilder;
 import com.qyh.coderepository.baidu.asr.recognization.offline.OfflineRecogParams;
 import com.qyh.coderepository.baidu.asr.recognization.online.OnlineRecogParams;
 import com.qyh.coderepository.baidu.asr.ui.BaiduASRDigitalDialog;
@@ -40,7 +39,6 @@ import com.qyh.coderepository.menu.baidu.asr.domain.NormalDomain;
 import com.qyh.coderepository.menu.baidu.asr.domain.WeatherDomain;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import butterknife.BindView;
