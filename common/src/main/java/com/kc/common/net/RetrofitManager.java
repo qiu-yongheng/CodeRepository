@@ -22,7 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class RetrofitManager {
-    private static RetrofitManager sInstace;
+    private static RetrofitManager instance;
     private final Context mContext;
     private final Retrofit retrofit;
     private final OkHttpClient httpClient;
@@ -35,7 +35,7 @@ public class RetrofitManager {
         httpClient = new OkHttpClient.Builder()
                 .addNetworkInterceptor(new CacheInterceptor()) // 设置离线缓存
                 .addInterceptor(new CacheInterceptor())
-                .addInterceptor(new HttpLogInterceptor().setLevel(HttpLogInterceptor.Level.BASIC))
+                .addInterceptor(new HttpLogInterceptor().setLevel(HttpLogInterceptor.Level.HEADERS))
                 .cache(new Cache(DirPathUtil.getOffHttpDir(mContext), HttpConfig.MAX_OFFLINE_SIZE))
                 .connectTimeout(30, TimeUnit.SECONDS) // 设置连接超时
                 .readTimeout(30, TimeUnit.SECONDS)
@@ -51,16 +51,19 @@ public class RetrofitManager {
                 .build();
     }
 
+    public static void init(Context context) {
+        if (instance == null) {
+            synchronized (RetrofitManager.class) {
+                instance = new RetrofitManager(context);
+            }
+        }
+    }
+
     /**
      * 创建单例
      */
-    public static RetrofitManager getInstace(Context context) {
-        if (sInstace == null) {
-            synchronized (RetrofitManager.class) {
-                sInstace = new RetrofitManager(context);
-            }
-        }
-        return sInstace;
+    public static RetrofitManager getInstance() {
+        return instance;
     }
 
     public Retrofit getRetrofit() {

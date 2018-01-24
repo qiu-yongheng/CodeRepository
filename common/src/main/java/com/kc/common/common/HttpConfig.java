@@ -13,7 +13,7 @@ public class HttpConfig {
     public static final int CONNECT_TIMEOUT = 30;//连接超时(秒)
     public static final int READ_TIMEOUT = 30;//读取超时(秒)
     public static final int WRITE_TIMEOUT = 30;//写超时(秒)
-    public static final String BASE_URL = "";//写超时(秒)
+    public static final String BASE_URL = "https://free-api.heweather.com";//写超时(秒)
     public static final String REQUEST_SERVER_URL = "填入接口地址";
 
 }

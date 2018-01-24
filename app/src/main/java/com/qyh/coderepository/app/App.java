@@ -3,6 +3,7 @@ package com.qyh.coderepository.app;
 import android.app.Application;
 
 import com.blankj.utilcode.util.Utils;
+import com.kc.common.net.RetrofitManager;
 import com.kc.common.util.toast.ToastManager;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
@@ -36,6 +37,7 @@ public class App extends Application{
         initToast();
         Utils.init(this);
         DbHelper.getInstance().init(this);
+        RetrofitManager.init(this);
     }
 
     private void initToast() {

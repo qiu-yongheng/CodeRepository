@@ -19,7 +19,7 @@ public class NormalDomain extends Domain<String> {
         if (result.getRawText().contains("傻逼")) {
             TtsUtil.getInstance().speak("是啊, 对啊");
         } else {
-            TtsUtil.getInstance().speak("傻逼, 目前还没有这个功能");
+            //TtsUtil.getInstance().speak("傻逼, 目前还没有这个功能");
         }
     }
 }

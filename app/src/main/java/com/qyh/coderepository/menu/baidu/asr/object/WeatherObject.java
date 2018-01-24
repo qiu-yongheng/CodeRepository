@@ -61,4 +61,16 @@ public class WeatherObject {
     public void setFocus(String focus) {
         this.focus = focus;
     }
+
+    @Override
+    public String toString() {
+        return "WeatherObject{" +
+                "date='" + date + '\'' +
+                ", region='" + region + '\'' +
+                ", weather='" + weather + '\'' +
+                ", wind='" + wind + '\'' +
+                ", temp='" + temp + '\'' +
+                ", focus='" + focus + '\'' +
+                '}';
+    }
 }
