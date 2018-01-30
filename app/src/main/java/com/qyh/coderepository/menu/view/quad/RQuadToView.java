@@ -1,4 +1,4 @@
-package com.qyh.coderepository.menu.view;
+package com.qyh.coderepository.menu.view.quad;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -8,87 +8,70 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.animation.LinearInterpolator;
-import android.widget.LinearLayout;
+
+import com.kc.common.util.log.LoggerUtil;
 
 /**
  * @author 邱永恒
- * @time 2018/1/3  15:32
- * @desc LinearLayout实现贝塞尔曲线动画背景
+ * @time 2018/1/3  13:29
+ * @desc 贝塞尔曲线动画
  */
 
-public class QuadLinearLayout extends LinearLayout{
+public class RQuadToView extends View {
+
     private Paint paint;
     private Path path;
-    private int mItemWaveLength = 800;
+    private int mItemWaveLength = 1500;
     private int dx;
     private ValueAnimator animator;
     private int dy;
-    private int originY = 70;
-    private long time = 5000;
-    private int waveHeight = 60;
-    private int measuredWidth;
-    private int measuredHeight;
+    private int originY = 300;
+    private long time = 10000;
+    private int waveHeight = 100;
 
-    public QuadLinearLayout(Context context) {
+    public RQuadToView(Context context) {
         super(context);
     }
 
-    public QuadLinearLayout(Context context, @Nullable AttributeSet attrs) {
+    public RQuadToView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public QuadLinearLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public RQuadToView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     {
         path = new Path();
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setColor(Color.argb(40, 0, 200, 0));
+        paint.setColor(Color.argb(30, 0, 200, 0));
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        measuredWidth = getMeasuredWidth();
-        measuredHeight = getMeasuredHeight();
-    }
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
 
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        paint.setColor(Color.argb(40, 0, 200, 0));
         path.reset();
-
         int halfWaveLen = mItemWaveLength / 2;
         path.moveTo(-mItemWaveLength + dx, originY + dy);
         for (int i = -mItemWaveLength; i <= getWidth() + mItemWaveLength; i += mItemWaveLength) {
             path.rQuadTo(halfWaveLen / 2, -waveHeight, halfWaveLen, 0);
             path.rQuadTo(halfWaveLen / 2, waveHeight, halfWaveLen, 0);
         }
-        path.lineTo(measuredWidth, measuredHeight);
-        path.lineTo(0, measuredHeight);
+        path.lineTo(getWidth(), getHeight());
+        path.lineTo(0, getHeight());
         path.close();
 
         canvas.drawPath(path, paint);
 
-
-
-        paint.setColor(Color.argb(60, 0, 200, 0));
-        path.reset();
-        int halfWaveLen1 = (mItemWaveLength + 200) / 2;
-        path.moveTo(-mItemWaveLength - 200 + dx, originY + dy);
-        for (int i = -mItemWaveLength - 200; i <= getWidth() + mItemWaveLength + 200; i += (mItemWaveLength + 200)) {
-            path.rQuadTo(halfWaveLen1 / 2, -waveHeight, halfWaveLen, 0);
-            path.rQuadTo(halfWaveLen1 / 2, waveHeight, halfWaveLen, 0);
+        if (animator != null && dy + 100 >= getHeight()) {
+            LoggerUtil.d(animator.isRunning() + ", " + animator.isStarted() + ", " + animator.isPaused());
+            animator.cancel();
+            LoggerUtil.d("cancel: " + animator.isRunning() + ", " + animator.isStarted() + ", " + animator.isPaused());
         }
-        path.lineTo(measuredWidth, measuredHeight);
-        path.lineTo(0, measuredHeight);
-        path.close();
-
-        canvas.drawPath(path, paint);
     }
 
     public void startAnim() {
@@ -110,21 +93,21 @@ public class QuadLinearLayout extends LinearLayout{
         }
     }
 
-    public void setHeight(int height) {
-        originY = 300 + getHeight() * height / 100;
+    public void setHeight(int progress) {
+        originY = 300 + getHeight() * progress / 100;
         invalidate();
     }
 
-    public void setSpeed(int speed) {
-        time = 10000 - 9000 * speed / 100;
+    public void setSpeed(int progress) {
+        time = 10000 - 9000 * progress / 100;
         invalidate();
         if (animator != null) {
             animator.setDuration(time);
         }
     }
 
-    public void setWave(int wave) {
-        mItemWaveLength = 1500 - 1200 * wave / 100;
+    public void setWave(int progress) {
+        mItemWaveLength = 1500 - 1200 * progress / 100;
         invalidate();
         if (animator != null) {
             animator.setIntValues(mItemWaveLength);

@@ -4,8 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.qyh.coderepository.menu.view.explosion.ExplosionView
+    <com.qyh.coderepository.menu.view.smartrefresh.footer.ballpulse.BallPulseView
+        android:id="@+id/ball_pulse_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"/>
 
 </android.support.constraint.ConstraintLayout>

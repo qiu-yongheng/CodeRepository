@@ -24,9 +24,10 @@ public class OnlineRecogParams {
         Map<String, Object> params = new LinkedHashMap<>();
         if (enableOffline) {
             params.put(SpeechConstant.DECODER, 2);
-            params.put(SpeechConstant.ASR_OFFLINE_ENGINE_GRAMMER_FILE_PATH, "asset:///baidu_speech_grammar.bsg");
+            params.put(SpeechConstant.ASR_OFFLINE_ENGINE_GRAMMER_FILE_PATH, "assets:///baidu_speech_grammar.bsg");
+            params.put(SpeechConstant.NLU, "enable");
         }
-        params.put(SpeechConstant.PID, 15361); // 设置语义识别
+        //params.put(SpeechConstant.PID, 15361); // 设置语义识别
         params.put(SpeechConstant.ACCEPT_AUDIO_VOLUME, true);
         return params;
     }

@@ -18,8 +18,16 @@ public class NormalDomain extends Domain<String> {
     public void handle() {
         if (result.getRawText().contains("傻逼")) {
             TtsUtil.getInstance().speak("是啊, 对啊");
-        } else {
-            //TtsUtil.getInstance().speak("傻逼, 目前还没有这个功能");
+        } else if (result.getRawText().contains("抢麦")) {
+            TtsUtil.getInstance().speak("抢麦成功");
+        } else if (result.getRawText().contains("放麦")) {
+            TtsUtil.getInstance().speak("放麦成功");
+        } else if (result.getRawText().contains("紧急抢麦")) {
+            TtsUtil.getInstance().speak("紧急抢麦成功");
+        } else if (result.getRawText().contains("sos")) {
+            TtsUtil.getInstance().speak("sos发送成功");
+        } else if (result.getRawText().contains("求救")) {
+            TtsUtil.getInstance().speak("sos发送成功");
         }
     }
 }

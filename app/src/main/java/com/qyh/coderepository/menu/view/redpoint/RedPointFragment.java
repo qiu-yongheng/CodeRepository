@@ -1,4 +1,4 @@
-package com.qyh.coderepository.menu.view.fragment;
+package com.qyh.coderepository.menu.view.redpoint;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,15 +11,15 @@ import com.qyh.coderepository.R;
 
 /**
  * @author 邱永恒
- * @time 2018/1/8  16:42
+ * @time 2018/1/6  10:42
  * @desc ${TODD}
  */
 
-public class FlowFragment extends Fragment{
+public class RedPointFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_flow, container, false);
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_red_point, container, false);
+        return view;
     }
 }

@@ -10,14 +10,14 @@ import android.widget.Button;
 
 import com.qyh.coderepository.MainActivity;
 import com.qyh.coderepository.R;
-import com.qyh.coderepository.menu.view.fragment.ExplosionFragment;
-import com.qyh.coderepository.menu.view.fragment.LinearGradientFragment;
-import com.qyh.coderepository.menu.view.fragment.QuadFragment;
-import com.qyh.coderepository.menu.view.fragment.QuadLlFragment;
-import com.qyh.coderepository.menu.view.fragment.RadialFragment;
-import com.qyh.coderepository.menu.view.fragment.RedPointFragment;
-import com.qyh.coderepository.menu.view.fragment.ShadowFragment;
-import com.qyh.coderepository.menu.view.fragment.ZonbiFragment;
+import com.qyh.coderepository.menu.view.explosion.ExplosionFragment;
+import com.qyh.coderepository.menu.view.lineargradient.LinearGradientFragment;
+import com.qyh.coderepository.menu.view.quad.QuadFragment;
+import com.qyh.coderepository.menu.view.quadll.QuadLlFragment;
+import com.qyh.coderepository.menu.view.radial.RadialFragment;
+import com.qyh.coderepository.menu.view.redpoint.RedPointFragment;
+import com.qyh.coderepository.menu.view.shadow.ShadowFragment;
+import com.qyh.coderepository.menu.view.zonbi.ZonbiFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

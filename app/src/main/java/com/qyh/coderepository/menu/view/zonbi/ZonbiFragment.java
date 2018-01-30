@@ -1,4 +1,4 @@
-package com.qyh.coderepository.menu.view.fragment;
+package com.qyh.coderepository.menu.view.zonbi;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qyh.coderepository.R;
-import com.qyh.coderepository.menu.view.ZonbiView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -81,7 +81,7 @@
 
         </LinearLayout>
 
-        <com.qyh.coderepository.menu.view.RQuadToView
+        <com.qyh.coderepository.menu.view.quad.RQuadToView
             android:id="@+id/rquad_to_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

@@ -1,4 +1,4 @@
-package com.qyh.coderepository.menu.view.fragment;
+package com.qyh.coderepository.menu.view.quadll;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qyh.coderepository.R;
-import com.qyh.coderepository.menu.view.LinearGradientView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -16,27 +15,26 @@ import butterknife.Unbinder;
 
 /**
  * @author 邱永恒
- * @time 2018/1/7  22:37
+ * @time 2018/1/6  10:42
  * @desc ${TODD}
  */
 
-
-public class LinearGradientFragment extends Fragment {
-    @BindView(R.id.lg)
-    LinearGradientView lg;
+public class QuadLlFragment extends Fragment {
+    @BindView(R.id.ql)
+    QuadLinearLayout ql;
     Unbinder unbinder;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_linear_gradient, container, false);
+        View view = inflater.inflate(R.layout.fragment_quad_ll, container, false);
         unbinder = ButterKnife.bind(this, view);
         initView();
         return view;
     }
 
     private void initView() {
-        lg.startAnim();
+        ql.startAnim();
     }
 
     @Override

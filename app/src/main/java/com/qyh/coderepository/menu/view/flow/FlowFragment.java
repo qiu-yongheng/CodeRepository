@@ -1,4 +1,4 @@
-package com.qyh.coderepository.menu.view.fragment;
+package com.qyh.coderepository.menu.view.flow;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,15 +11,15 @@ import com.qyh.coderepository.R;
 
 /**
  * @author 邱永恒
- * @time 2018/1/6  10:43
+ * @time 2018/1/8  16:42
  * @desc ${TODD}
  */
 
-public class ExplosionFragment extends Fragment{
+public class FlowFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_explosion, container, false);
-        return view;
+        View view = inflater.inflate(R.layout.fragment_flow, container, false);
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

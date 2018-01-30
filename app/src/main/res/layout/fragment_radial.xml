@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.qyh.coderepository.menu.view.RadialButton
+    <com.qyh.coderepository.menu.view.radial.RadialButton
         android:id="@+id/btn_radial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

@@ -26,7 +26,7 @@ public class OfflineRecogParams{
     public static Map<String, Object> fetchOfflineParams() {
         Map<String, Object> params = new LinkedHashMap<>();
         params.put(SpeechConstant.DECODER, 2);
-        params.put(SpeechConstant.ASR_OFFLINE_ENGINE_GRAMMER_FILE_PATH, "assets://baidu_speech_grammar.bsg");
+        params.put(SpeechConstant.ASR_OFFLINE_ENGINE_GRAMMER_FILE_PATH, "assets:///baidu_speech_grammar.bsg");
         return params;
     }
 

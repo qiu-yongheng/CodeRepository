@@ -1,4 +1,4 @@
-package com.qyh.coderepository.menu.view.fragment;
+package com.qyh.coderepository.menu.view.shadow;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

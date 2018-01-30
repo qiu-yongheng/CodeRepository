@@ -25,6 +25,7 @@ import com.qyh.coderepository.baidu.asr.recognization.ChainRecogListener;
 import com.qyh.coderepository.baidu.asr.recognization.EventRecogListener;
 import com.qyh.coderepository.baidu.asr.recognization.MessageStatusRecogListener;
 import com.qyh.coderepository.baidu.asr.recognization.NluResult;
+import com.qyh.coderepository.baidu.asr.recognization.RecogResult;
 import com.qyh.coderepository.baidu.asr.recognization.offline.OfflineRecogParams;
 import com.qyh.coderepository.baidu.asr.recognization.online.OnlineRecogParams;
 import com.qyh.coderepository.baidu.asr.ui.BaiduASRDigitalDialog;
@@ -75,7 +76,7 @@ public class AsrFragment extends Fragment {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (msg.obj != null) {
+            if (msg.obj != null && tvLog != null) {
                 tvLog.append(msg.obj.toString() + "\n");
             }
 
@@ -147,6 +148,7 @@ public class AsrFragment extends Fragment {
 
     /**
      * 启动语音识别
+     *
      * @param params
      */
     private void startAsr(Map<String, Object> params) {
@@ -165,12 +167,6 @@ public class AsrFragment extends Fragment {
     private void startWakeup() {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put(SpeechConstant.WP_WORDS_FILE, "assets:///WakeUp.bin");
-        // "assets:///WakeUp.bin" 表示WakeUp.bin文件定义在assets目录下
-
-        // params.put(SpeechConstant.ACCEPT_AUDIO_DATA,true);
-        // params.put(SpeechConstant.ACCEPT_AUDIO_VOLUME,true);
-        // params.put(SpeechConstant.IN_FILE,"res:///com/baidu/android/voicedemo/wakeup.pcm");
-        // params里 "assets:///WakeUp.bin" 表示WakeUp.bin文件定义在assets目录下
         myWakeup.start(params);
     }
 
@@ -210,6 +206,24 @@ public class AsrFragment extends Fragment {
             }
 
             domain.handle();
+        }
+
+        @Override
+        public void onAsrFinalResult(String[] results, RecogResult recogResult) {
+            super.onAsrFinalResult(results, recogResult);
+            String result = recogResult.getOrigalJson();
+
+            if (result.contains("抢麦")) {
+                TtsUtil.getInstance().speak("抢麦成功");
+            } else if (result.contains("放麦")) {
+                TtsUtil.getInstance().speak("放麦成功");
+            } else if (result.contains("紧急抢麦")) {
+                TtsUtil.getInstance().speak("紧急抢麦成功");
+            } else if (result.contains("sos") || result.contains("SOS")) {
+                TtsUtil.getInstance().speak("sos发送成功");
+            } else if (result.contains("求救")) {
+                TtsUtil.getInstance().speak("sos发送成功");
+            }
         }
     };
 }

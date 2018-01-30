@@ -1,4 +1,4 @@
-package com.qyh.coderepository.menu.view;
+package com.qyh.coderepository.menu.view.redpoint;
 
 import android.content.Context;
 import android.graphics.Canvas;

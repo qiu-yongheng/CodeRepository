@@ -28,6 +28,7 @@ import com.qyh.coderepository.menu.executor.ThreadExecutorFragment;
 import com.qyh.coderepository.menu.killer.KillerFragment;
 import com.qyh.coderepository.menu.mvp.MvpFragment;
 import com.qyh.coderepository.menu.view.ViewFragment;
+import com.qyh.coderepository.menu.view.smartrefresh.SmartRefreshFragment;
 
 import java.util.ArrayList;
 
@@ -46,6 +47,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     private FragmentStack fragmentStack;
     private long exitTime;
+    private MainFragment mainFragment;
+    private DBFragment dbFragment;
+    private DaggerFragment daggerFragment;
+    private KillerFragment killerFragment;
+    private ThreadExecutorFragment threadExecutorFragment;
+    private MvpFragment mvpFragment;
+    private ViewFragment viewFragment;
+    private TtsFragment ttsFragment;
+    private AsrFragment asrFragment;
+    private SmartRefreshFragment smartRefreshFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +69,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void initFragment() {
+        mainFragment = new MainFragment();
+        dbFragment = new DBFragment();
+        daggerFragment = new DaggerFragment();
+        killerFragment = new KillerFragment();
+        threadExecutorFragment = new ThreadExecutorFragment();
+        mvpFragment = new MvpFragment();
+        viewFragment = new ViewFragment();
+        ttsFragment = new TtsFragment();
+        asrFragment = new AsrFragment();
+        smartRefreshFragment = new SmartRefreshFragment();
+
         fragmentStack = new FragmentStack(this, getSupportFragmentManager(), R.id.content_frame);
-        fragmentStack.replace(new MainFragment());
+        fragmentStack.replace(mainFragment);
     }
 
     private void initView() {
@@ -77,46 +99,56 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     /**
      * menu点击监听
+     *
      * @param item
      * @return
      */
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_nav_db:
-                /** 数据库操作 */
-                fragmentStack.push(new DBFragment());
-                break;
-            case R.id.menu_nav_dagger2:
-                /** 依赖注入 */
-                fragmentStack.push(new DaggerFragment());
-                break;
-            case R.id.menu_nav_kill:
-                /** 进程保活 */
-                fragmentStack.push(new KillerFragment());
-                break;
-            case R.id.menu_nav_runnable:
-                /** 任务队列 */
-                fragmentStack.push(new ThreadExecutorFragment());
-                break;
-            case R.id.menu_nav_mvp:
-                /** MVP */
-                fragmentStack.push(new MvpFragment());
-                break;
-            case R.id.menu_nav_view:
-                /** 自定义View */
-                fragmentStack.push(new ViewFragment());
-                break;
-            case R.id.menu_nav_tts:
-                /** 语音合成 */
-                fragmentStack.push(new TtsFragment());
-                break;
-            case R.id.menu_nav_asr:
-                /** 语音识别 */
-                fragmentStack.push(new AsrFragment());
-                break;
-        }
+    public boolean onNavigationItemSelected(@NonNull final MenuItem item) {
         drawerLayout.closeDrawer(GravityCompat.START);
+        drawerLayout.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                switch (item.getItemId()) {
+                    case R.id.menu_nav_db:
+                        /** 数据库操作 */
+                        push(dbFragment);
+                        break;
+                    case R.id.menu_nav_dagger2:
+                        /** 依赖注入 */
+                        push(daggerFragment);
+                        break;
+                    case R.id.menu_nav_kill:
+                        /** 进程保活 */
+                        push(killerFragment);
+                        break;
+                    case R.id.menu_nav_runnable:
+                        /** 任务队列 */
+                        push(threadExecutorFragment);
+                        break;
+                    case R.id.menu_nav_mvp:
+                        /** MVP */
+                        push(mvpFragment);
+                        break;
+                    case R.id.menu_nav_view:
+                        /** 自定义View */
+                        push(viewFragment);
+                        break;
+                    case R.id.menu_nav_tts:
+                        /** 语音合成 */
+                        push(ttsFragment);
+                        break;
+                    case R.id.menu_nav_asr:
+                        /** 语音识别 */
+                        push(asrFragment);
+                        break;
+                    case R.id.menu_nav_smart:
+                        /** 刷新控件 */
+                        push(smartRefreshFragment);
+                        break;
+                }
+            }
+        }, 200);
         return true;
     }
 
@@ -133,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void push(Fragment fragment) {
+    public void push(final Fragment fragment) {
         fragmentStack.push(fragment);
     }
 
@@ -168,5 +200,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ActivityCompat.requestPermissions(this, toApplyList.toArray(tmpList), 123);
         }
     }
-
 }

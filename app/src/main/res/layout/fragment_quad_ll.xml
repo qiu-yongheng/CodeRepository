@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.qyh.coderepository.menu.view.QuadLinearLayout
+    <com.qyh.coderepository.menu.view.quadll.QuadLinearLayout
         android:id="@+id/ql"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -57,6 +57,6 @@
             android:textSize="@dimen/sp_16"/>
 
 
-    </com.qyh.coderepository.menu.view.QuadLinearLayout>
+    </com.qyh.coderepository.menu.view.quadll.QuadLinearLayout>
 
 </android.support.constraint.ConstraintLayout>

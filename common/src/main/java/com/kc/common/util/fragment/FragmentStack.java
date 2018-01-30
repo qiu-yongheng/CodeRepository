@@ -1,6 +1,7 @@
 package com.kc.common.util.fragment;
 
 import android.app.Activity;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
@@ -13,10 +14,11 @@ import java.util.List;
 /**
  * FragmentManager does not supply developers with a fragment stack.
  * It gives us a fragment *transaction* stack.
- *
+ * <p>
  * To be sane, we need *fragment* stack.
  */
 public class FragmentStack {
+    private Handler handler = new Handler();
 
     public interface OnBackPressedHandlingFragment {
         boolean onBackPressed();
@@ -49,16 +51,15 @@ public class FragmentStack {
         Fragment top = peek();
         if (top != null) {
             manager.beginTransaction()
-                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
-                .remove(top)
-                .add(containerId, fragment, indexToTag(manager.getBackStackEntryCount() + 1))
-                .addToBackStack(null)
-                .commit();
-        }
-        else {
+                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
+                    .remove(top)
+                    .add(containerId, fragment, indexToTag(manager.getBackStackEntryCount() + 1))
+                    .addToBackStack(null)
+                    .commit();
+        } else {
             manager.beginTransaction()
-                .add(containerId, fragment, indexToTag(0))
-                .commit();
+                    .add(containerId, fragment, indexToTag(0))
+                    .commit();
         }
 
         manager.executePendingTransactions();
@@ -74,7 +75,7 @@ public class FragmentStack {
     public boolean back() {
         Fragment top = peek();
         if (top instanceof OnBackPressedHandlingFragment) {
-            if (((OnBackPressedHandlingFragment)top).onBackPressed())
+            if (((OnBackPressedHandlingFragment) top).onBackPressed())
                 return true;
         }
         return pop();
@@ -99,8 +100,8 @@ public class FragmentStack {
     public void replace(Fragment fragment) {
         manager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         manager.beginTransaction()
-            .replace(containerId, fragment, indexToTag(0))
-            .commit();
+                .replace(containerId, fragment, indexToTag(0))
+                .commit();
         manager.executePendingTransactions();
     }
 
@@ -126,10 +127,10 @@ public class FragmentStack {
         Fragment back = getBackFragment(fragment);
 
         if (back != null && callbackType.isAssignableFrom(back.getClass()))
-            return (T)back;
+            return (T) back;
 
         if (callbackType.isAssignableFrom(activity.getClass()))
-            return (T)activity;
+            return (T) activity;
 
         return null;
     }
@@ -137,8 +138,9 @@ public class FragmentStack {
     private Fragment getBackFragment(Fragment fragment) {
         List<Fragment> fragments = getFragments();
         for (int f = fragments.size() - 1; f >= 0; f--) {
-            if (fragments.get(f) == fragment && f > 0)
-                return fragments.get(f - 1);
+            if (fragments.get(f) == fragment && f >= 0) {
+                return fragments.get(f);
+            }
         }
         return null;
     }
