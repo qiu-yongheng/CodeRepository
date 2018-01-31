@@ -27,8 +27,8 @@ public class BallPulseView extends View {
 
     private Paint paint;
 
-    private int normalColor = 0xffeeeeee;
-    private int animatingColor = 0xffe75946;
+    private int normalColor = 0xffeeeeee; // 停止动画时, 圆点指示器的颜色, 默认白色
+    private int animatingColor = 0xffe75946; // 开始动画时, 圆点指示器的颜色, 默认红色
 
     private float circleSpacing; // 圆圈间隔
     private float[] scaleFloats = new float[]{1f, 1f, 1f};

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qyh.coderepository.R;
+import com.qyh.coderepository.menu.view.smartrefresh.footer.BallPulseFooter;
 import com.qyh.coderepository.menu.view.smartrefresh.footer.ballpulse.BallPulseView;
 
 import butterknife.BindView;
@@ -24,6 +25,8 @@ public class SmartRefreshFragment extends Fragment {
     @BindView(R.id.ball_pulse_view)
     BallPulseView ballPulseView;
     Unbinder unbinder;
+    @BindView(R.id.ball_pulse_footer)
+    BallPulseFooter ballPulseFooter;
 
     @Nullable
     @Override
@@ -42,6 +45,7 @@ public class SmartRefreshFragment extends Fragment {
 
     private void initView() {
         ballPulseView.startAnim();
+        ballPulseFooter.onStartAnimator();
     }
 
     private void initListener() {
