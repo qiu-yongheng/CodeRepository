@@ -24,7 +24,4 @@
     <item
         android:id="@+id/menu_nav_asr"
         android:title="语音识别"/>
-    <item
-        android:id="@+id/menu_nav_smart"
-        android:title="刷新控件"/>
 </menu>

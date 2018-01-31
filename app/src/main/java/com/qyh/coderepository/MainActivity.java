@@ -142,10 +142,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         /** 语音识别 */
                         push(asrFragment);
                         break;
-                    case R.id.menu_nav_smart:
-                        /** 刷新控件 */
-                        push(smartRefreshFragment);
-                        break;
                 }
             }
         }, 200);
