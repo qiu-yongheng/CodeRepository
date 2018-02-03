@@ -65,8 +65,6 @@ public class BallPulseFooter extends ViewGroup{
                 resolveSize(mBallPulseView.getMeasuredWidth(), widthMeasureSpec),
                 resolveSize(mBallPulseView.getMeasuredHeight(), heightMeasureSpec)
         );
-
-
     }
 
     /**

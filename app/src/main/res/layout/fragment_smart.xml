@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<com.qyh.coderepository.menu.view.BaseLlView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -15,4 +15,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-</LinearLayout>
+    <com.qyh.coderepository.menu.view.smartrefresh.header.bezierradar.RippleView
+        android:id="@+id/ripple_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <com.qyh.coderepository.menu.view.smartrefresh.header.bezierradar.RoundDotView
+        android:id="@+id/round_dot_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+</com.qyh.coderepository.menu.view.BaseLlView>

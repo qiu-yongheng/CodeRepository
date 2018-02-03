@@ -9,8 +9,8 @@ import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 import android.view.View;
 
-
 import com.blankj.utilcode.util.SizeUtils;
+import com.kc.common.util.log.LoggerUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,6 +63,7 @@ public class BallPulseView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int default_size = SizeUtils.dp2px(DEFAULT_SIZE);
         setMeasuredDimension(resolveSize(default_size, widthMeasureSpec), resolveSize(default_size, heightMeasureSpec));
+        LoggerUtil.d(String.format("onMeasure width = %d,height = %d",getWidth(),getHeight()));
     }
 
     /**
@@ -81,7 +82,6 @@ public class BallPulseView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawColor(Color.WHITE);
         // 圆半径
         float radius = (Math.min(getWidth(), getHeight()) - circleSpacing * 2) / 6;
         // 计算绘制坐标原点
