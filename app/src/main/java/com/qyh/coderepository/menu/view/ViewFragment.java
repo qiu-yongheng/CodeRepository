@@ -17,6 +17,7 @@ import com.qyh.coderepository.menu.view.quadll.QuadLlFragment;
 import com.qyh.coderepository.menu.view.radial.RadialFragment;
 import com.qyh.coderepository.menu.view.redpoint.RedPointFragment;
 import com.qyh.coderepository.menu.view.shadow.ShadowFragment;
+import com.qyh.coderepository.menu.view.slid.SlidingFragment;
 import com.qyh.coderepository.menu.view.smartrefresh.SmartRefreshFragment;
 import com.qyh.coderepository.menu.view.zonbi.ZonbiFragment;
 
@@ -51,6 +52,8 @@ public class ViewFragment extends Fragment implements View.OnClickListener {
     Button btnBitmap;
     @BindView(R.id.btn_smart)
     Button btnSmart;
+    @BindView(R.id.btn_slid)
+    Button btnSlid;
 
     @Nullable
     @Override
@@ -76,6 +79,7 @@ public class ViewFragment extends Fragment implements View.OnClickListener {
         btnRadial.setOnClickListener(this);
         btnBitmap.setOnClickListener(this);
         btnSmart.setOnClickListener(this);
+        btnSlid.setOnClickListener(this);
     }
 
     @Override
@@ -113,6 +117,9 @@ public class ViewFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.btn_smart: // 刷新控件
                 ((MainActivity) getActivity()).push(new SmartRefreshFragment());
+                break;
+            case R.id.btn_slid: // 仿QQ侧滑菜单
+                ((MainActivity) getActivity()).push(new SlidingFragment());
                 break;
         }
     }
