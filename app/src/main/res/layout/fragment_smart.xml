@@ -25,4 +25,9 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
 
+    <com.qyh.coderepository.menu.view.smartrefresh.header.bezierradar.RoundProgressView
+        android:id="@+id/round_progress_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
 </com.qyh.coderepository.menu.view.BaseLlView>

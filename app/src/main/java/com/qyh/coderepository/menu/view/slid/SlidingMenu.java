@@ -139,6 +139,14 @@ public class SlidingMenu extends HorizontalScrollView {
     }
 
     /**
+     * 判断是否已打开Menu
+     * @return
+     */
+    public boolean isOpen() {
+        return isOpen;
+    }
+
+    /**
      * 打开菜单
      */
     public void openMenu() {

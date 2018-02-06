@@ -13,6 +13,7 @@ import com.qyh.coderepository.menu.view.smartrefresh.footer.BallPulseFooter;
 import com.qyh.coderepository.menu.view.smartrefresh.footer.ballpulse.BallPulseView;
 import com.qyh.coderepository.menu.view.smartrefresh.header.bezierradar.RippleView;
 import com.qyh.coderepository.menu.view.smartrefresh.header.bezierradar.RoundDotView;
+import com.qyh.coderepository.menu.view.smartrefresh.header.bezierradar.RoundProgressView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,6 +35,8 @@ public class SmartRefreshFragment extends Fragment {
     RippleView rippleView;
     @BindView(R.id.round_dot_view)
     RoundDotView roundDotView;
+    @BindView(R.id.round_progress_view)
+    RoundProgressView roundProgressView;
     private Handler handler = new Handler();
 
     @Nullable
@@ -61,6 +64,7 @@ public class SmartRefreshFragment extends Fragment {
             }
         });
         roundDotView.startAnim(1.5f);
+        roundProgressView.startAnim();
     }
 
     private void initListener() {

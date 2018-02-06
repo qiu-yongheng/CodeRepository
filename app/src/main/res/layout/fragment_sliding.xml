@@ -7,30 +7,35 @@
 
     <com.qyh.coderepository.menu.view.slid.SlidingMenu
         android:id="@+id/slid_menu"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:rightPadding="80dp">
 
         <LinearLayout
+            android:background="@mipmap/img_frame_background"
             android:id="@+id/ll_parent"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
+                <android.support.v7.widget.RecyclerView
+                    android:layout_gravity="center"
+                    android:id="@+id/recycler_view"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@mipmap/qq"/>
+                    android:layout_height="wrap_content"/>
+
             </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_content"
+                android:background="@mipmap/qq"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
         </LinearLayout>
     </com.qyh.coderepository.menu.view.slid.SlidingMenu>
 
