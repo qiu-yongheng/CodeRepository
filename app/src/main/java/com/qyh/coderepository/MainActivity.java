@@ -27,6 +27,7 @@ import com.qyh.coderepository.menu.database.DBFragment;
 import com.qyh.coderepository.menu.executor.ThreadExecutorFragment;
 import com.qyh.coderepository.menu.killer.KillerFragment;
 import com.qyh.coderepository.menu.mvp.MvpFragment;
+import com.qyh.coderepository.menu.ping.PingFragment;
 import com.qyh.coderepository.menu.view.ViewFragment;
 import com.qyh.coderepository.menu.view.smartrefresh.SmartRefreshFragment;
 
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private TtsFragment ttsFragment;
     private AsrFragment asrFragment;
     private SmartRefreshFragment smartRefreshFragment;
+    private PingFragment pingFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ttsFragment = new TtsFragment();
         asrFragment = new AsrFragment();
         smartRefreshFragment = new SmartRefreshFragment();
+        pingFragment = new PingFragment();
 
         fragmentStack = new FragmentStack(this, getSupportFragmentManager(), R.id.content_frame);
         fragmentStack.replace(mainFragment);
@@ -141,6 +144,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     case R.id.menu_nav_asr:
                         /** 语音识别 */
                         push(asrFragment);
+                        break;
+                    case R.id.menu_nav_ping:
+                        /** ping测试 */
+                        push(pingFragment);
                         break;
                 }
             }
