@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.blankj.utilcode.util.Utils;
 import com.kc.common.net.RetrofitManager;
+import com.kc.common.util.PingUtil;
 import com.kc.common.util.toast.ToastManager;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
@@ -38,6 +39,7 @@ public class App extends Application{
         Utils.init(this);
         DbHelper.getInstance().init(this);
         RetrofitManager.init(this);
+        PingUtil.init();
     }
 
     private void initToast() {

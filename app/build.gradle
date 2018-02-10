@@ -46,7 +46,9 @@ dependencies {
     compile 'com.google.dagger:dagger:2.13'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.13'
     implementation project(':common')
+    // kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    // RxLite
 }
 repositories {
     mavenCentral()
