@@ -56,7 +56,7 @@ public class SlidingMenu extends HorizontalScrollView {
     }
 
     /**
-     * 当使用了自定义属性时，会调用此构造方法
+     * 当使用了自定义属性时，会调用此构造方法(这里应该有问题, 应该两个参数的构造方法也可以获取自定义属性)
      *
      * @param context
      * @param attrs

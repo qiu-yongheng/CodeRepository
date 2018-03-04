@@ -1,12 +1,12 @@
 package com.qyh.coderepository.menu.baidu.asr;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,6 +41,7 @@ import com.qyh.coderepository.menu.baidu.asr.domain.WeatherDomain;
 
 import java.util.HashMap;
 import java.util.Map;
+
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -223,6 +224,8 @@ public class AsrFragment extends Fragment {
                 TtsUtil.getInstance().speak("sos发送成功");
             } else if (result.contains("求救")) {
                 TtsUtil.getInstance().speak("sos发送成功");
+            } else if (result.contains("游戏") && result.contains("最好玩")) {
+                TtsUtil.getInstance().speak("当然是贪碗篮月, 是兄弟就来砍(kan2)我啊!");
             }
         }
     };

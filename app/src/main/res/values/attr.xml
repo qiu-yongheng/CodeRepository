@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- 侧滑菜单 -->
     <declare-styleable name="SlidingMenu">
         <attr name="rightPadding" format="dimension"/>
+    </declare-styleable>
+    
+    <!-- 自定义标题栏 -->
+    <declare-styleable name="TopBar">
+        <attr name="leftButtonText" format="string"/>
+        <attr name="leftButtonBackGround" format="color|reference"/>
+        <attr name="rightButtonText" format="string"/>
+        <attr name="rightButtonBackGround" format="color|reference"/>
+        <attr name="title" format="string"/>
+        <attr name="topBarBackGround" format="color|reference"/>
     </declare-styleable>
 </resources>

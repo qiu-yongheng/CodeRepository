@@ -27,7 +27,7 @@ public class OnlineRecogParams {
             params.put(SpeechConstant.ASR_OFFLINE_ENGINE_GRAMMER_FILE_PATH, "assets:///baidu_speech_grammar.bsg");
             params.put(SpeechConstant.NLU, "enable");
         }
-        //params.put(SpeechConstant.PID, 15361); // 设置语义识别
+        params.put(SpeechConstant.PID, 15361); // 设置语义识别
         params.put(SpeechConstant.ACCEPT_AUDIO_VOLUME, true);
         return params;
     }
