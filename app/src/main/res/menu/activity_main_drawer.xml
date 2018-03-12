@@ -27,4 +27,7 @@
     <item
         android:id="@+id/menu_nav_ping"
         android:title="ping测试"/>
+    <item
+        android:id="@+id/menu_nav_rxjava"
+        android:title="RxJava"/>
 </menu>

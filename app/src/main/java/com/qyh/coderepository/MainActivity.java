@@ -28,6 +28,7 @@ import com.qyh.coderepository.menu.executor.ThreadExecutorFragment;
 import com.qyh.coderepository.menu.killer.KillerFragment;
 import com.qyh.coderepository.menu.mvp.MvpFragment;
 import com.qyh.coderepository.menu.ping.PingFragment;
+import com.qyh.coderepository.menu.rxjava.RxJavaFragment;
 import com.qyh.coderepository.menu.view.ViewFragment;
 import com.qyh.coderepository.menu.view.smartrefresh.SmartRefreshFragment;
 
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private AsrFragment asrFragment;
     private SmartRefreshFragment smartRefreshFragment;
     private PingFragment pingFragment;
+    private RxJavaFragment rxJavaFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         asrFragment = new AsrFragment();
         smartRefreshFragment = new SmartRefreshFragment();
         pingFragment = new PingFragment();
+        rxJavaFragment = new RxJavaFragment();
 
         fragmentStack = new FragmentStack(this, getSupportFragmentManager(), R.id.content_frame);
         fragmentStack.replace(mainFragment);
@@ -148,6 +151,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     case R.id.menu_nav_ping:
                         /** ping测试 */
                         push(pingFragment);
+                        break;
+                    case R.id.menu_nav_rxjava:
+                        /** RxJava */
+                        push(rxJavaFragment);
                         break;
                 }
             }
