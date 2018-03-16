@@ -19,21 +19,37 @@ import com.qyh.coderepository.R;
  * @desc 仿QQ侧滑菜单(继承水平滚动控件实现)
  */
 public class SlidingMenu extends HorizontalScrollView {
-    // ScrollView唯一线性布局
+    /**
+     * ScrollView唯一线性布局
+      */
     private LinearLayout mWrapper;
-    // 菜单控件
+    /**
+     * 菜单控件
+     */
     private ViewGroup mMenu;
-    // 内容控件
+    /**
+     * 内容控件
+     */
     private ViewGroup mContent;
-    // 屏幕宽度
+    /**
+     * 屏幕宽度
+     */
     private int mScreenWidth;
-    // 菜单宽度
+    /**
+     * 菜单宽度
+     */
     private int mMenuWidth;
-    // 菜单距离右侧屏幕距离(dp)
+    /**
+     * 菜单距离右侧屏幕距离(dp)
+     */
     private int mMenuRightPadding = 50;
-    // onMeasure()会重复调用, 使用该标识, 只执行一次子控件的测量
+    /**
+     * 标示是否测量过
+     */
     private boolean once;
-    // 标识菜单是否打开
+    /**
+     * 标识菜单是否打开
+     */
     private boolean isOpen;
 
     /**

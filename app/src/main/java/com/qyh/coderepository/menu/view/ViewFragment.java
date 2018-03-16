@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import com.qyh.coderepository.MainActivity;
 import com.qyh.coderepository.R;
+import com.qyh.coderepository.menu.view.codoon.CodoonFragment;
 import com.qyh.coderepository.menu.view.explosion.ExplosionFragment;
 import com.qyh.coderepository.menu.view.lineargradient.LinearGradientFragment;
 import com.qyh.coderepository.menu.view.quad.QuadFragment;
@@ -54,6 +55,8 @@ public class ViewFragment extends Fragment implements View.OnClickListener {
     Button btnSmart;
     @BindView(R.id.btn_slid)
     Button btnSlid;
+    @BindView(R.id.btn_codoon)
+    Button btnCodoon;
 
     @Nullable
     @Override
@@ -80,6 +83,7 @@ public class ViewFragment extends Fragment implements View.OnClickListener {
         btnBitmap.setOnClickListener(this);
         btnSmart.setOnClickListener(this);
         btnSlid.setOnClickListener(this);
+        btnCodoon.setOnClickListener(this);
     }
 
     @Override
@@ -91,35 +95,51 @@ public class ViewFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_quad: // 贝塞尔曲线动画
+            case R.id.btn_quad:
+                // 贝塞尔曲线动画
                 ((MainActivity) getActivity()).push(new QuadFragment());
                 break;
-            case R.id.btn_quad_ll: // ViewGroup背景动画
+            case R.id.btn_quad_ll:
+                // ViewGroup背景动画
                 ((MainActivity) getActivity()).push(new QuadLlFragment());
                 break;
-            case R.id.btn_red_point: // 小红点
+            case R.id.btn_red_point:
+                // 小红点
                 ((MainActivity) getActivity()).push(new RedPointFragment());
                 break;
-            case R.id.btn_explosion: // 爆炸悬浮框
+            case R.id.btn_explosion:
+                // 爆炸悬浮框
                 ((MainActivity) getActivity()).push(new ExplosionFragment());
                 break;
-            case R.id.btn_ll_shape: // 闪动文字
+            case R.id.btn_ll_shape:
+                // 闪动文字
                 ((MainActivity) getActivity()).push(new LinearGradientFragment());
                 break;
-            case R.id.btn_shadow: // 阴影效果
+            case R.id.btn_shadow:
+                // 阴影效果
                 ((MainActivity) getActivity()).push(new ShadowFragment());
                 break;
-            case R.id.btn_radial: // 波形按钮
+            case R.id.btn_radial:
+                // 波形按钮
                 ((MainActivity) getActivity()).push(new RadialFragment());
                 break;
-            case R.id.btn_bitmap: // 图片动画
+            case R.id.btn_bitmap:
+                // 图片动画
                 ((MainActivity) getActivity()).push(new ZonbiFragment());
                 break;
-            case R.id.btn_smart: // 刷新控件
+            case R.id.btn_smart:
+                // 刷新控件
                 ((MainActivity) getActivity()).push(new SmartRefreshFragment());
                 break;
-            case R.id.btn_slid: // 仿QQ侧滑菜单
+            case R.id.btn_slid:
+                // 仿QQ侧滑菜单
                 ((MainActivity) getActivity()).push(new SlidingFragment());
+                break;
+            case R.id.btn_codoon:
+                // 仿咕咚运动数据展示
+                ((MainActivity) getActivity()).push(new CodoonFragment());
+                break;
+            default:
                 break;
         }
     }
