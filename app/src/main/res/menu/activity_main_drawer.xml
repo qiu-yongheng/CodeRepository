@@ -30,4 +30,7 @@
     <item
         android:id="@+id/menu_nav_rxjava"
         android:title="RxJava"/>
+    <item
+        android:id="@+id/menu_nav_ipc"
+        android:title="IPC"/>
 </menu>

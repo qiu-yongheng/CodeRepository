@@ -14,6 +14,13 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 
+    <!-- AIDL权限验证 -->
+    <uses-permission android:name="com.qyh.coderepository.ACCESS_BOOK_SERVICE"/>
+    <!-- 自定义权限 -->
+    <permission
+        android:name="com.qyh.coderepository.ACCESS_BOOK_SERVICE"
+        android:protectionLevel="normal"/>
+
     <application
         android:name=".app.App"
         android:allowBackup="true"
@@ -51,14 +58,33 @@
         <activity
             android:name=".baidu.asr.ui.BaiduASRDigitalDialog"
             android:configChanges="orientation|keyboardHidden|screenLayout"
-            android:theme="@android:style/Theme.Dialog"
             android:exported="false"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Dialog">
             <intent-filter>
-                <action android:name="com.baidu.action.RECOGNIZE_SPEECH" />
-                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="com.baidu.action.RECOGNIZE_SPEECH"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".menu.ipc.bundle.BundleService"
+            android:process=":ipc_bundle"/>
+        <service
+            android:name=".menu.ipc.file.FileService"
+            android:process=":ipc_file"/>
+        <service
+            android:name=".menu.ipc.messenger.MessengerService"
+            android:process=":ipc_messenger"/>
+        <service
+            android:name=".menu.ipc.aidl.AidlService"
+            android:process=":ipc_aidl"/>
+
+        <provider
+            android:name=".menu.ipc.contentprovider.BookProvider"
+            android:authorities="com.qyh.coderepository.provider.book"
+            android:permission="com.qyh.PROVIDER"
+            android:process=":ipc_provider"/>
     </application>
 
 </manifest>
