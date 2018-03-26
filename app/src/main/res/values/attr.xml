@@ -14,4 +14,32 @@
         <attr name="title" format="string"/>
         <attr name="topBarBackGround" format="color|reference"/>
     </declare-styleable>
+
+    <declare-styleable name="CircleProgress">
+        <!--进度条宽度-->
+        <attr name="circleStrokeWidth" format="dimension"/>
+        <!--进度条背景颜色-->
+        <attr name="circleBackground" format="color"/>
+        <!--进度条颜色-->
+        <attr name="circleProgressColor" format="color"/>
+        <!--百分比字体颜色-->
+        <attr name="textPercentColor" format="color"/>
+        <!--其他字体颜色-->
+        <attr name="textColor" format="color"/>
+        <!--百分比字体大小-->
+        <attr name="textPercentSize" format="dimension"/>
+        <!--百分比描述字体大小-->
+        <attr name="textPercentDesSize" format="dimension"/>
+        <!--属性字体大小-->
+        <attr name="textAttrSize" format="dimension"/>
+        <!--百分比-->
+        <attr name="percent" format="integer"/>
+        <attr name="maxProgress" format="float"/>
+        <!--百分比描述-->
+        <attr name="percentDes" format="string|reference"/>
+        <!--属性名-->
+        <attr name="attrText" format="string|reference"/>
+        <!--属性值-->
+        <attr name="attrValue" format="string|reference"/>
+    </declare-styleable>
 </resources>

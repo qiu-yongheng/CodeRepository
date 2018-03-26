@@ -150,6 +150,8 @@ public class SlidingMenu extends HorizontalScrollView {
                 }
                 // 拦截触摸事件
                 return true;
+            default:
+                break;
         }
         return super.onTouchEvent(ev);
     }

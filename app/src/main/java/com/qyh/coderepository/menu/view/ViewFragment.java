@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import com.qyh.coderepository.MainActivity;
 import com.qyh.coderepository.R;
+import com.qyh.coderepository.menu.view.circleprogress.CircleFragment;
 import com.qyh.coderepository.menu.view.codoon.CodoonFragment;
 import com.qyh.coderepository.menu.view.explosion.ExplosionFragment;
 import com.qyh.coderepository.menu.view.lineargradient.LinearGradientFragment;
@@ -57,6 +58,8 @@ public class ViewFragment extends Fragment implements View.OnClickListener {
     Button btnSlid;
     @BindView(R.id.btn_codoon)
     Button btnCodoon;
+    @BindView(R.id.btn_circle_progress)
+    Button btnCircleProgress;
 
     @Nullable
     @Override
@@ -84,6 +87,7 @@ public class ViewFragment extends Fragment implements View.OnClickListener {
         btnSmart.setOnClickListener(this);
         btnSlid.setOnClickListener(this);
         btnCodoon.setOnClickListener(this);
+        btnCircleProgress.setOnClickListener(this);
     }
 
     @Override
@@ -139,6 +143,9 @@ public class ViewFragment extends Fragment implements View.OnClickListener {
                 // 仿咕咚运动数据展示
                 ((MainActivity) getActivity()).push(new CodoonFragment());
                 break;
+            case R.id.btn_circle_progress:
+                // 圆形进度条
+                ((MainActivity) getActivity()).push(new CircleFragment());
             default:
                 break;
         }

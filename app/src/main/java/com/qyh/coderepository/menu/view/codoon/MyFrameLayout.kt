@@ -19,14 +19,41 @@ import android.widget.LinearLayout
  *
  */
 class MyFrameLayout : FrameLayout, MyScrollView.OnScrollPercentListener, TabIndicatorView.OnTabClickListener {
+    /**
+     * 是否第一次计算子控件尺寸
+     */
     private var once: Boolean = false
+    /**
+     * 屏幕宽度
+     */
     private var screenWidth = 0
+    /**
+     * 屏幕高度
+     */
     private var screenHeight = 0
+    /**
+     * 地图高度
+     */
     private var mapHeight = 0
+    /**
+     * toobar之类的头布局
+     */
     private lateinit var headView: LinearLayout
+    /**
+     * 滚动布局
+     */
     private lateinit var scrollView: MyScrollView
+    /**
+     * 地图控件
+     */
     private lateinit var mapView: View
+    /**
+     * 内容控件
+     */
     private lateinit var cardView: CardView
+    /**
+     * 地图与屏幕底端的距离
+     */
     private var mapBottomPadding = 300
 
     constructor(context: Context?) : super(context)
@@ -58,18 +85,22 @@ class MyFrameLayout : FrameLayout, MyScrollView.OnScrollPercentListener, TabIndi
         Log.d(TAG, "onMeasure()")
     }
 
+    /**
+     * 重新计算子控件的尺寸
+     */
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
         Log.d(TAG, "onLayout()")
         // 获取头
         headView = getChildAt(1) as LinearLayout
         val tabIndicatorView = headView.getChildAt(1) as TabIndicatorView
+        // 设置指示器的点击事件
         tabIndicatorView.setOnTabClickListener(this)
         // 获取滚动控件
         scrollView = getChildAt(0) as MyScrollView
         scrollView.setOnScrollPercentListener(this)
         Log.d(TAG, "head height: ${headView.measuredHeight}")
-        scrollView.setMarginTop(headView.measuredHeight.toFloat())
+        // scrollView.setMarginTop(headView.measuredHeight.toFloat())
     }
 
     /**
