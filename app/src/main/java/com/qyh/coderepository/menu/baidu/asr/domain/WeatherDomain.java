@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import com.kc.common.net.RetrofitManager;
 import com.qyh.coderepository.api.ApiService;
 import com.qyh.coderepository.baidu.asr.recognization.NluResult;
+import com.qyh.coderepository.baidu.tts.TtsUtil;
 import com.qyh.coderepository.entity.Weather;
 import com.qyh.coderepository.menu.baidu.asr.object.WeatherObject;
 
@@ -45,7 +46,7 @@ public class WeatherDomain extends Domain<WeatherObject> {
         }
 
         RetrofitManager.getInstance().create(ApiService.class)
-                .getWeather("50e68789a6924d4db1c9b5d2ce36736a", "北京")
+                .getWeather("50e68789a6924d4db1c9b5d2ce36736a", "广州")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Weather>() {
@@ -53,10 +54,14 @@ public class WeatherDomain extends Domain<WeatherObject> {
                     public void onSubscribe(Disposable d) {
 
                     }
-
                     @Override
                     public void onNext(Weather weather) {
-                        Log.d("==", "onNext");
+                        Weather.HeWeather6Bean bean = weather.getHeWeather6().get(0);
+                        Weather.HeWeather6Bean.DailyForecastBean forecastBean = bean.getDaily_forecast().get(0);
+
+                        String s = bean.getBasic().getLocation() + "明天" + forecastBean.getCond_txt_d() + ", " + forecastBean.getWind_dir() + forecastBean.getWind_spd() + "级, 最高气温" + forecastBean.getTmp_max() + ", 最低气温" + forecastBean.getTmp_min();
+                        TtsUtil.getInstance().speak(s);
+                        Log.d("==", "onNex: " + s);
                     }
 
                     @Override

@@ -28,6 +28,8 @@ public class NormalDomain extends Domain<String> {
             TtsUtil.getInstance().speak("sos发送成功");
         } else if (result.getRawText().contains("求救")) {
             TtsUtil.getInstance().speak("sos发送成功");
+        } else {
+           TtsUtil.getInstance().speak("暂时不支持此功能");
         }
     }
 }
